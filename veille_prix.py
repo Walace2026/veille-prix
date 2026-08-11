@@ -56,6 +56,15 @@ nous-memes trois choses que Keepa ne donne pas :
     plancher d avant. Un vrai produit oscille dans un rapport de 1 a 3. Le
     piston affiche 1160. Au-dela de 8, la serie ne veut rien dire.
 
+CATEGORIES EXCLUES
+
+Les livres, la musique et les films sortent du balayage. Sur ces fiches, tous
+les vendeurs et toutes les editions partagent un seul ASIN : un titre epuise
+reste liste un an a 2 060 $ par un revendeur pendant que les avis viennent de
+l edition de poche a 12 $. La serie est coherente avec elle-meme et resiste a
+tous les tests ci-dessus. Au passage v3, 22 des 24 « anomalies » etaient des
+livres. Ce ne sont de toute facon pas les rabais recherches.
+
 S y ajoutent deux garde-fous tires de /product :
 
   - le produit doit VENDRE (salesRankDrops90 > 0). Les fantomes ne vendent
@@ -106,6 +115,19 @@ VENTES_MIN = 3                    # ventes estimees en 90 jours, ou bien...
 AVIS_MIN = 10                     # ...des avis, pour les articles chers qui
                                   # se vendent peu mais existent vraiment
 COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
+
+# Les categories qu on ne balaie pas. Voir l en-tete pour le pourquoi.
+GROUPES_EXCLUS = frozenset([
+    "book", "books", "ebooks", "abis_book",
+    "music", "digital music track", "digital music album", "abis_music",
+    "dvd", "video", "abis_dvd", "movies", "theatrical",
+])
+RELIURES_EXCLUES = frozenset([
+    "paperback", "hardcover", "mass market paperback", "board book",
+    "library binding", "perfect paperback", "pocket book", "spiral-bound",
+    "audio cd", "audio cassette", "vinyl", "kindle edition", "comic",
+    "loose leaf", "printed access code", "school & library binding",
+])
 
 TAG = "dtlinformat0f-20"
 FICHIER_VUS = "vus.json"
@@ -331,12 +353,33 @@ def stock_connu(stats):
     return 100 - int(v)
 
 
+def categorie_exclue(produit):
+    """Vrai pour les livres, la musique et les films.
+
+    Sur ces fiches, tous les vendeurs et toutes les editions partagent le meme
+    ASIN. Un titre epuise reste liste un an a 2 060 $ par un revendeur pendant
+    que les 1 605 avis viennent de l edition de poche a 12 $. La serie de prix
+    est alors parfaitement coherente avec elle-meme, le produit « vend », il a
+    des avis — aucun des garde-fous precedents ne la voit passer. C est ce qui
+    remplissait la page au passage v3 : 24 anomalies, 22 livres.
+
+    Ce ne sont de toute facon pas les rabais recherches.
+    """
+    groupe = (produit.get("productGroup") or "").strip().lower()
+    reliure = (produit.get("binding") or "").strip().lower()
+    return groupe in GROUPES_EXCLUS or reliure in RELIURES_EXCLUES
+
+
 def juger(prise, produit, fin=None):
     """Le verdict, ecrit dans la prise. Renvoie True si on publie.
 
     Chaque refus est enregistre dans prise["refus"] : c est ce qui permet de
     comprendre, en lisant le journal du passage, pourquoi la page est vide.
     """
+    if categorie_exclue(produit):
+        prise["refus"] = "livre, musique ou film"
+        return False
+
     m90, plancher, couverture = analyser_historique(produit, fin)
     stats = produit.get("stats") or {}
     prix = prise["prix"]
@@ -558,7 +601,12 @@ footer li{{margin-bottom:4px}}
 </header>
 {''.join(corps)}
 <footer>
-  Pour apparaître ici, un article doit franchir six tests : coûter au moins
+  Les livres, la musique et les films sont exclus : une fiche de livre est
+  partagée par tous les vendeurs et toutes les éditions, si bien qu’un titre
+  épuisé listé un an à 2 000 $ ressemble à une aubaine dès qu’un vrai
+  exemplaire réapparaît.
+  <br><br>
+  Pour le reste, un article doit franchir six tests : coûter au moins
   {PRIX_MIN:.0f} $ ; être au moins 10 % <strong>sous son plus bas prix des
   douze derniers mois</strong>, les 48 dernières heures exclues du calcul ;
   afficher un écart d’au moins {ECART_MIN:.0f} $ avec sa <strong>médiane

@@ -1,0 +1,70 @@
+# Balayage horaire des prix anormaux sur Amazon.ca.
+#
+# Cout par passage : 40 jetons Keepa pour le filet (8 pages x 5 jetons), plus
+# un jeton par candidat confirme. Sur 24 passages, environ 1000 jetons par
+# jour — moins de 4 % de la recharge quotidienne (20 jetons/min = 28 800/jour).
+#
+# Le planificateur de GitHub Actions est regulierement en retard de cinq a
+# quinze minutes sur les depots gratuits. C est acceptable pour un passage
+# horaire ; ca ne le serait pas pour viser la minute.
+
+name: Veille prix - balayage horaire
+
+on:
+  schedule:
+    - cron: "7 * * * *"     # a 7 minutes de chaque heure, UTC
+  workflow_dispatch:         # bouton pour lancer a la main
+
+permissions:
+  contents: write            # pour reecrire index.html et la memoire
+  pages: write
+  id-token: write
+
+concurrency:
+  group: veille
+  cancel-in-progress: false  # deux passages ne doivent pas s ecraser
+
+jobs:
+  balayer:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dependances
+        run: pip install requests
+
+      - name: Balayer
+        env:
+          KEEPA_API_KEY: ${{ secrets.KEEPA_API_KEY }}
+        run: python veille_prix.py
+
+      - name: Conserver la page et la memoire
+        run: |
+          if [ -n "$(git status --porcelain index.html vus.json historique.json)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add index.html vus.json historique.json
+            git commit -m "Veille : passage du $(date -u '+%Y-%m-%d %H:%M') UTC"
+            git push
+          else
+            echo "Rien de nouveau"
+          fi
+
+      - name: Preparer l artefact Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  publier:
+    needs: balayer
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4

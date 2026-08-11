@@ -102,7 +102,9 @@ COHERENCE_MAX = 8.0               # mediane90 / plancher : au-dela, serie folle
 FENETRE_MEDIANE = 90              # jours
 IGNORER_RECENT_H = 48             # heures exclues du calcul du plancher
 STOCK_MIN_PCT = 50                # en stock au moins la moitie du temps
-VENTES_MIN = 1                    # au moins une vente estimee en 90 jours
+VENTES_MIN = 3                    # ventes estimees en 90 jours, ou bien...
+AVIS_MIN = 10                     # ...des avis, pour les articles chers qui
+                                  # se vendent peu mais existent vraiment
 COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
 
 TAG = "dtlinformat0f-20"
@@ -313,6 +315,22 @@ def stat_entier(stats, nom, defaut=0):
     return v if isinstance(v, (int, float)) and v >= 0 else defaut
 
 
+def stock_connu(stats):
+    """Le pourcentage de temps EN STOCK sur 90 jours, ou None si inconnu.
+
+    Piege releve au passage v3 : Keepa renvoie outOfStockPercentage90 sous
+    forme de TABLEAU indexe par type de prix, pas d entier. La premiere
+    version lisait un entier ; la valeur etait donc toujours rejetee et le
+    garde-fou ne servait a rien.
+    """
+    v = stats.get("outOfStockPercentage90")
+    if isinstance(v, list):
+        v = case(v, NEUF)
+    if not isinstance(v, (int, float)) or v < 0:
+        return None
+    return 100 - int(v)
+
+
 def juger(prise, produit, fin=None):
     """Le verdict, ecrit dans la prise. Renvoie True si on publie.
 
@@ -326,8 +344,7 @@ def juger(prise, produit, fin=None):
     prise["mediane90"] = round(m90, 2) if m90 else None
     prise["plancher"] = round(plancher, 2) if plancher else None
     prise["ventes90"] = stat_entier(stats, "salesRankDrops90")
-    rupture = stat_entier(stats, "outOfStockPercentage90", -1)
-    prise["stock90"] = 100 - rupture if rupture >= 0 else None
+    prise["stock90"] = stock_connu(stats)
 
     if m90 is None or plancher is None or couverture < COUVERTURE_MIN_J:
         prise["refus"] = "historique trop court pour juger"
@@ -341,8 +358,8 @@ def juger(prise, produit, fin=None):
     if plancher > 0 and m90 / plancher > COHERENCE_MAX:
         prise["refus"] = "serie de prix incoherente (annonce fantome)"
         return False
-    if prise["ventes90"] < VENTES_MIN:
-        prise["refus"] = "aucune vente estimee en 90 jours"
+    if prise["ventes90"] < VENTES_MIN and (prise.get("avis") or 0) < AVIS_MIN:
+        prise["refus"] = "aucune traction : ni ventes ni avis"
         return False
     if prise["stock90"] is not None and prise["stock90"] < STOCK_MIN_PCT:
         prise["refus"] = "en rupture plus de la moitie du temps"
@@ -547,9 +564,9 @@ footer li{{margin-bottom:4px}}
   afficher un écart d’au moins {ECART_MIN:.0f} $ avec sa <strong>médiane
   pondérée par le temps sur 90 jours</strong> — pas la moyenne de Keepa, qui
   est faussée par les annonces fantômes ; avoir une série de prix cohérente
-  (médiane au plus {COHERENCE_MAX:.0f} × son plancher) ; s’être vendu au moins
-  une fois en 90 jours ; et avoir été en stock au moins {STOCK_MIN_PCT} % du
-  temps.
+  (médiane au plus {COHERENCE_MAX:.0f} × son plancher) ; montrer une trace
+  d’existence réelle — au moins {VENTES_MIN} ventes estimées en 90 jours, ou
+  {AVIS_MIN} avis ; et avoir été en stock au moins {STOCK_MIN_PCT} % du temps.
   <br><br>
   Ces règles viennent d’un premier essai qui avait sorti 212 fausses
   anomalies : des articles indisponibles qu’un seul vendeur affichait à un

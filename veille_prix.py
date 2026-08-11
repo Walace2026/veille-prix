@@ -48,9 +48,9 @@ JOUR, SEMAINE, MOIS, TRIMESTRE = 0, 1, 2, 3
 
 PAGES = 8                         # 8 x 150 = 1200 offres, 40 jetons
 RABAIS_MIN_PCT = 60               # preselection cote serveur
-ECART_MIN = 150.00                # l ecart en dollars qui declenche l alerte
+ECART_MIN = 200.00                # l ecart en dollars qui declenche l alerte
 PRIX_MIN = 25.00                  # sous ce prix, meme un gros ecart est du bruit
-CONFIRMER_MAX = 25                # appels /product par passage, au maximum
+CONFIRMER_MAX = 60                # appels /product par passage, au maximum
 MEMOIRE_HEURES = 48               # on ne resignale pas deux fois la meme chose
 GARDER_HISTORIQUE = 200
 
@@ -95,19 +95,28 @@ def prix_courant(offre):
 
 
 def prix_normal(offre, i):
-    """Ce que l article vaut d habitude.
+    """Ce que l article vaut d habitude — la MEDIANE des moyennes connues.
 
-    On prend la moyenne la plus longue disponible — 90 jours de preference.
-    Volontairement PAS la moyenne du jour : si l erreur de prix est en cours,
-    la moyenne du jour est deja contaminee par l erreur elle-meme et l ecart
-    parait plus petit qu il ne l est.
+    Premiere version : on prenait la moyenne 90 jours. Resultat au premier
+    essai reel, un piston de moto a 195 $ annonce « avant 132 453 $ », et un
+    livre de poche a 236 $ « avant 2 059 $ ». La moyenne 90 jours de Keepa
+    inclut les prix delirants qu un vendeur tiers a affiches pendant quelques
+    heures ; une seule annonce a 130 000 $ suffit a la faire exploser.
+
+    La mediane des quatre intervalles (jour, semaine, mois, 90 jours) resiste
+    a ces valeurs aberrantes : il faudrait que la moitie des periodes soient
+    fausses pour la tromper. Et elle laisse passer les vraies anomalies : quand
+    un article a 4 500 $ tombe a 250 $ ce matin, les quatre moyennes tournent
+    encore autour de 4 500 $, donc la mediane aussi.
     """
     avg = offre.get("avg") or []
-    for intervalle in (TRIMESTRE, MOIS, SEMAINE):
-        v = case2(avg, intervalle, i)
-        if v:
-            return v / 100.0
-    return None
+    valeurs = sorted(v for v in
+                     (case2(avg, n, i) for n in (JOUR, SEMAINE, MOIS, TRIMESTRE))
+                     if v)
+    if len(valeurs) < 2:
+        return None
+    # Mediane basse sur un nombre pair : on prefere sous-estimer l ecart.
+    return valeurs[(len(valeurs) - 1) // 2] / 100.0
 
 
 def candidat(offre):

@@ -63,7 +63,13 @@ les vendeurs et toutes les editions partagent un seul ASIN : un titre epuise
 reste liste un an a 2 060 $ par un revendeur pendant que les avis viennent de
 l edition de poche a 12 $. La serie est coherente avec elle-meme et resiste a
 tous les tests ci-dessus. Au passage v3, 22 des 24 « anomalies » etaient des
-livres. Ce ne sont de toute facon pas les rabais recherches.
+livres, puis 136 des 193 candidats du passage suivant. Ce ne sont de toute
+facon pas les rabais recherches.
+
+On les reconnait a deux choses : un ASIN qui commence par un chiffre est un
+ISBN-10, et /deal fournit le rayon racine. On avait d abord essaye
+productGroup et binding cotes /product — le journal a montre qu ils valent
+None : le code paraissait marcher et ne faisait rien.
 
 S y ajoutent deux garde-fous tires de /product :
 
@@ -116,17 +122,17 @@ AVIS_MIN = 10                     # ...des avis, pour les articles chers qui
                                   # se vendent peu mais existent vraiment
 COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
 
-# Les categories qu on ne balaie pas. Voir l en-tete pour le pourquoi.
-GROUPES_EXCLUS = frozenset([
-    "book", "books", "ebooks", "abis_book",
-    "music", "digital music track", "digital music album", "abis_music",
-    "dvd", "video", "abis_dvd", "movies", "theatrical",
-])
-RELIURES_EXCLUES = frozenset([
-    "paperback", "hardcover", "mass market paperback", "board book",
-    "library binding", "perfect paperback", "pocket book", "spiral-bound",
-    "audio cd", "audio cassette", "vinyl", "kindle edition", "comic",
-    "loose leaf", "printed access code", "school & library binding",
+# Les rayons Amazon.ca qu on ne balaie pas, par identifiant de categorie
+# racine. Keepa ne renvoie ni productGroup ni binding avec /product (verifie
+# au passage v3 : les deux valent None), mais /deal fournit rootCat pour rien.
+# La liste se complete a partir du journal, qui imprime le rootCat de chaque
+# rescape — jamais au juge.
+RACINES_EXCLUES = frozenset([
+    962454,      # Musique (CD et vinyle)
+    916520,      # Livres
+    6205125011,  # Films et emissions de television
+    667823011,   # Boutique Kindle
+    2202090011,  # Musique numerique
 ])
 
 TAG = "dtlinformat0f-20"
@@ -203,6 +209,7 @@ def candidat(offre):
         "titre": (offre.get("title") or "").strip(),
         "prix": round(prix, 2),
         "grossier": round(grossier, 2),
+        "rayon": offre.get("rootCat"),
         "note": round(note / 10, 1) if note else None,
         "avis": case(courant, AVIS),
         "lien": f"https://www.amazon.ca/dp/{offre.get('asin')}?tag={TAG}",
@@ -353,14 +360,16 @@ def stock_connu(stats):
     return 100 - int(v)
 
 
-def categorie_exclue(produit, asin=None):
+def categorie_exclue(prise):
     """Vrai pour les livres, la musique et les films.
 
-    Trois signaux, parce qu aucun ne suffit seul : le groupe de produit, la
-    reliure, et la forme de l ASIN. Un ASIN qui commence par un chiffre est un
-    ISBN-10 : c est un livre, sans exception. C est le signal le plus sur des
-    trois, et le seul qui ne depende pas de champs que Keepa remplit de facon
-    inegale.
+    Deux signaux. Le premier : un ASIN qui commence par un chiffre est un
+    ISBN-10, donc un livre, sans exception — c est ce qui a ecarte 136 des
+    193 candidats au passage v3. Le second : le rayon racine fourni par /deal.
+
+    La premiere version interrogeait productGroup et binding cotes /product.
+    Le journal a montre qu ils valent None : Keepa ne les renvoie pas ici. Le
+    code paraissait marcher et ne faisait rien.
 
     Sur ces fiches, tous les vendeurs et toutes les editions partagent le meme
     ASIN. Un titre epuise reste liste un an a 2 060 $ par un revendeur pendant
@@ -371,12 +380,9 @@ def categorie_exclue(produit, asin=None):
 
     Ce ne sont de toute facon pas les rabais recherches.
     """
-    code = asin or produit.get("asin") or ""
-    if code[:1].isdigit():
+    if (prise.get("asin") or "")[:1].isdigit():
         return True
-    groupe = (produit.get("productGroup") or "").strip().lower()
-    reliure = (produit.get("binding") or "").strip().lower()
-    return groupe in GROUPES_EXCLUS or reliure in RELIURES_EXCLUES
+    return prise.get("rayon") in RACINES_EXCLUES
 
 
 def juger(prise, produit, fin=None):
@@ -385,7 +391,7 @@ def juger(prise, produit, fin=None):
     Chaque refus est enregistre dans prise["refus"] : c est ce qui permet de
     comprendre, en lisant le journal du passage, pourquoi la page est vide.
     """
-    if categorie_exclue(produit, prise.get("asin")):
+    if categorie_exclue(prise):
         prise["refus"] = "livre, musique ou film"
         return False
 
@@ -468,13 +474,11 @@ def verifier(cle, prises):
     for motif, n in sorted(motifs.items(), key=lambda x: -x[1]):
         print(f"    ecarte {n:4d} x  {motif}")
 
-    # On imprime le groupe et la reliure des rescapes : c est comme ca qu on
-    # decouvre les valeurs exactes que Keepa emploie, et donc ce qu il reste
-    # a ajouter aux listes d exclusion quand un CD passe encore.
+    # On imprime le rayon de chaque rescape : c est comme ca qu on decouvre
+    # les identifiants a ajouter a RACINES_EXCLUES quand un CD passe encore.
     for prise in gardees:
-        p = par_asin.get(prise["asin"]) or {}
-        print(f"    garde {prise['asin']} · groupe={p.get('productGroup')!r} "
-              f"· reliure={p.get('binding')!r} · {prise['titre'][:60]}")
+        print(f"    garde {prise['asin']} · rayon={prise.get('rayon')} "
+              f"· {prise['titre'][:60]}")
     return gardees
 
 

@@ -19,9 +19,12 @@ offres, reviennent a 40 jetons. D ou la strategie en deux temps :
                                       quelques centaines qui franchissent le
                                       pre-tri.
 
-Compte : 40 + environ 250 jetons par passage, soit ~7000 par jour, un quart de
-la recharge quotidienne (28 800). Et jamais plus de 340 d un coup, tres loin
-du plafond de 1200.
+Compte : jusqu a 125 jetons pour le filet et 600 pour la verification, soit
+725 au pire par passage. La recharge est de 20 jetons par minute, donc 1200
+par heure : un passage horaire au plein tarif consomme un peu plus de la
+moitie de ce qui rentre. Une reserve de 250 jetons est gardee intacte pour les
+autres scenarios Keepa de la maison — le balayage s arrete plutot que d y
+toucher.
 
 POURQUOI ON NE PEUT PAS SE FIER AUX MOYENNES DE KEEPA
 
@@ -102,12 +105,13 @@ NOTE, AVIS = 16, 17
 # Intervalles des tableaux avg / deltaPercent : jour, semaine, mois, 90 jours.
 JOUR, SEMAINE, MOIS, TRIMESTRE = 0, 1, 2, 3
 
-PAGES = 8                         # 8 x 150 = 1200 offres, 40 jetons
+PAGES = 25                        # 25 x 150 = 3750 offres, 125 jetons
 RABAIS_MIN_PCT = 60               # preselection cote serveur
 ECART_MIN = 200.00                # l ecart en dollars qui declenche l alerte
-PRIX_MIN = 25.00                  # sous ce prix, meme un gros ecart est du bruit
-VERIFIER_MAX = 300                # appels /product par passage, au maximum
+PRIX_MIN = 0.00                   # aucun plancher : voir la note ci-dessous
+VERIFIER_MAX = 600                # appels /product par passage, au maximum
 LOT_PRODUIT = 100                 # ASIN par requete /product (maximum Keepa)
+RESERVE_JETONS = 250              # on ne descend jamais sous ce solde
 MEMOIRE_HEURES = 48               # on ne resignale pas deux fois la meme chose
 GARDER_HISTORIQUE = 200
 
@@ -121,6 +125,12 @@ VENTES_MIN = 3                    # ventes estimees en 90 jours, ou bien...
 AVIS_MIN = 10                     # ...des avis, pour les articles chers qui
                                   # se vendent peu mais existent vraiment
 COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
+
+# Il n y a plus de prix plancher. C etait une precaution redondante : pour
+# passer, un article doit deja afficher 200 $ d ecart avec sa mediane. Un
+# porte-cles a 3 $ ne peut y arriver que si sa mediane vaut 203 $, ce qui
+# signale une annonce fantome — et les autres tests s en chargent. Le retirer
+# fait entrer les articles a 24 $ et moins, qui etaient exclus pour rien.
 
 # Les rayons Amazon.ca qu on ne balaie pas, par identifiant de categorie
 # racine. Keepa ne renvoie ni productGroup ni binding avec /product (verifie
@@ -141,6 +151,11 @@ FICHIER_PAGE = "index.html"
 EST = timezone(timedelta(hours=-4))
 # Les horodatages Keepa comptent les minutes depuis le 1er janvier 2011 UTC.
 EPOQUE_KEEPA = datetime(2011, 1, 1, tzinfo=timezone.utc)
+
+
+# Dernier solde de jetons connu, mis a jour a chaque reponse de Keepa. Il sert
+# de frein commun au filet et a la verification.
+JETONS_VUS = None
 
 
 def maintenant():
@@ -216,8 +231,16 @@ def candidat(offre):
 
 
 def balayer(cle):
-    """Le filet large : huit pages de /deal, 40 jetons."""
+    """Le filet large : vingt-cinq pages de /deal, 125 jetons au plus.
+
+    Deux arrets anticipes. Une page qui renvoie moins de 150 offres est la
+    derniere : inutile de payer pour du vide. Et si le solde de jetons tombe
+    sous la reserve, on s arrete la — les autres scenarios Keepa de la maison
+    puisent dans le meme compte, et une veille qui les assecherait ne vaudrait
+    pas ce qu elle coute.
+    """
     trouves, vus_asin = [], set()
+    global JETONS_VUS
     for page in range(PAGES):
         selection = {
             "page": page, "domainId": DOMAINE, "priceTypes": [NEUF],
@@ -244,8 +267,18 @@ def balayer(cle):
             c = candidat(o)
             if c:
                 trouves.append(c)
+        reste = paquet.get("tokensLeft")
+        if isinstance(reste, int):
+            JETONS_VUS = reste
         print(f"  page {page} : {len(offres)} offres, {len(trouves)} candidat(s) "
-              f"cumule(s), {paquet.get('tokensLeft', '?')} jetons")
+              f"cumule(s), {reste} jetons")
+
+        if len(offres) < 150:
+            print(f"  fin du gisement a la page {page}")
+            break
+        if isinstance(reste, int) and reste < RESERVE_JETONS + 200:
+            print(f"  arret : plus que {reste} jetons, on garde la reserve")
+            break
     return trouves
 
 
@@ -441,8 +474,14 @@ def verifier(cle, prises):
         print(f"  ATTENTION : {len(prises) - VERIFIER_MAX} candidat(s) non "
               f"verifie(s), plafond de {VERIFIER_MAX} atteint")
 
+    global JETONS_VUS
     par_asin = {}
     for debut in range(0, len(lot_total), LOT_PRODUIT):
+        if isinstance(JETONS_VUS, int) and JETONS_VUS < RESERVE_JETONS + LOT_PRODUIT:
+            reste = len(lot_total) - debut
+            print(f"  arret : {JETONS_VUS} jetons, {reste} candidat(s) non "
+                  f"verifie(s) — la reserve passe avant")
+            break
         tranche = lot_total[debut:debut + LOT_PRODUIT]
         try:
             r = requests.get(KEEPA_PRODUIT, timeout=180,
@@ -456,6 +495,8 @@ def verifier(cle, prises):
             continue
         for p in paquet.get("products") or []:
             par_asin[p.get("asin")] = p
+        if isinstance(paquet.get("tokensLeft"), int):
+            JETONS_VUS = paquet["tokensLeft"]
         print(f"  lot {debut // LOT_PRODUIT} : {len(tranche)} ASIN, "
               f"{paquet.get('tokensLeft', '?')} jetons restants")
 
@@ -558,7 +599,7 @@ def ecrire_page(neuves, historique, jetons, duree, examines=0):
         corps += [carte(p, neuf=True) for p in neuves]
     else:
         corps.append("<h1>Rien de neuf</h1>")
-        corps.append('<p class="vide">Aucun article ne passe les six tests '
+        corps.append('<p class="vide">Aucun article ne passe les cinq tests '
                      f'ce passage-ci ({examines} candidat(s) examiné(s) en '
                      'détail). C’est le cas le plus fréquent — une vraie '
                      'erreur de prix est rare, et c’est exactement ce qui la '
@@ -625,9 +666,9 @@ footer li{{margin-bottom:4px}}
   épuisé listé un an à 2 000 $ ressemble à une aubaine dès qu’un vrai
   exemplaire réapparaît.
   <br><br>
-  Pour le reste, un article doit franchir six tests : coûter au moins
-  {PRIX_MIN:.0f} $ ; être au moins 10 % <strong>sous son plus bas prix des
-  douze derniers mois</strong>, les 48 dernières heures exclues du calcul ;
+  Pour le reste, un article doit franchir cinq tests : être au moins 10 %
+  <strong>sous son plus bas prix des douze derniers mois</strong>, les
+  48 dernières heures exclues du calcul ;
   afficher un écart d’au moins {ECART_MIN:.0f} $ avec sa <strong>médiane
   pondérée par le temps sur 90 jours</strong> — pas la moyenne de Keepa, qui
   est faussée par les annonces fantômes ; avoir une série de prix cohérente

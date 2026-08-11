@@ -128,11 +128,9 @@ COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
 # La liste se complete a partir du journal, qui imprime le rootCat de chaque
 # rescape — jamais au juge.
 RACINES_EXCLUES = frozenset([
-    962454,      # Musique (CD et vinyle)
-    916520,      # Livres
-    6205125011,  # Films et emissions de television
-    667823011,   # Boutique Kindle
-    2202090011,  # Musique numerique
+    916514,      # Musique — releve sur le CD « Requiem », passage #7
+    917972,      # Disques et films — releve sur « Tchaikovsky: Swan Lake »
+    916520,      # Livres — double emploi avec la regle ISBN, par securite
 ])
 
 TAG = "dtlinformat0f-20"

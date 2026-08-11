@@ -19,12 +19,17 @@ offres, reviennent a 40 jetons. D ou la strategie en deux temps :
                                       quelques centaines qui franchissent le
                                       pre-tri.
 
-Compte : jusqu a 125 jetons pour le filet et 600 pour la verification, soit
-725 au pire par passage. La recharge est de 20 jetons par minute, donc 1200
-par heure : un passage horaire au plein tarif consomme un peu plus de la
-moitie de ce qui rentre. Une reserve de 250 jetons est gardee intacte pour les
-autres scenarios Keepa de la maison — le balayage s arrete plutot que d y
-toucher.
+Compte : le filet couvre trois series de prix, 25 pages chacune au plus, soit
+375 jetons dans le pire des cas — en pratique moins, parce que le gisement
+s epuise avant. La verification est plafonnee a 600 ASIN. La recharge est de
+20 jetons par minute, donc 1200 par heure. Une reserve de 250 jetons reste
+intacte pour les autres scenarios Keepa de la maison : le balayage s arrete
+plutot que d y toucher.
+
+Ce qui rend le compte tenable, c est que les livres sont ecartes AU PRE-TRI,
+avant tout appel a /product. Sur un balayage complet, 241 des 332 candidats
+etaient des livres : les verifier coutait 241 jetons pour un resultat connu
+d avance.
 
 POURQUOI ON NE PEUT PAS SE FIER AUX MOYENNES DE KEEPA
 
@@ -84,10 +89,13 @@ LE CRITERE EST EN DOLLARS, PAS EN POURCENTAGE
 
 Un rabais de 94 % sur un porte-cles a 3 $ ne vaut rien. Le meme pourcentage
 sur un velo electrique a 4 500 $, c est une prise. On trie sur l ECART EN
-DOLLARS ; le pourcentage ne sert qu a preselectionner cote serveur.
+DOLLARS ; le pourcentage ne sert qu a preselectionner cote serveur. Le seuil
+est a 50 $ : assez bas pour ne rien rater d interessant, assez haut pour que
+le bruit des petits articles ne remonte pas.
 """
 import json
 import os
+import re
 import sys
 import time
 from datetime import datetime, timedelta, timezone
@@ -100,14 +108,27 @@ KEEPA_TOKEN = "https://api.keepa.com/token"
 DOMAINE = 6                       # Amazon.ca
 
 # Indices des series de prix Keepa, en base zero cote Python.
-AMAZON, NEUF, LISTPRICE = 0, 1, 4
+AMAZON, NEUF, LISTPRICE, ENTREPOT = 0, 1, 4, 9
 NOTE, AVIS = 16, 17
+
+# Les trois series de prix qu on balaie, chacune avec sa propre requete /deal.
+# On ne regardait que le neuf des vendeurs tiers ; le prix pratique par Amazon
+# lui-meme et les offres Entrepot sont des series distinctes, invisibles
+# autrement. Chaque serie est comparee a son propre historique : un article
+# Entrepot a 30 % sous le neuf est une offre Entrepot ordinaire, pas une
+# anomalie — ce qui compte, c est l ecart avec ce que CETTE serie vaut
+# d habitude.
+TYPES_BALAYES = (
+    (NEUF, "neuf"),
+    (AMAZON, "vendu par Amazon"),
+    (ENTREPOT, "Amazon Entrepôt"),
+)
 # Intervalles des tableaux avg / deltaPercent : jour, semaine, mois, 90 jours.
 JOUR, SEMAINE, MOIS, TRIMESTRE = 0, 1, 2, 3
 
 PAGES = 25                        # 25 x 150 = 3750 offres, 125 jetons
 RABAIS_MIN_PCT = 60               # preselection cote serveur
-ECART_MIN = 200.00                # l ecart en dollars qui declenche l alerte
+ECART_MIN = 50.00                 # l ecart en dollars qui declenche l alerte
 PRIX_MIN = 0.00                   # aucun plancher : voir la note ci-dessous
 VERIFIER_MAX = 600                # appels /product par passage, au maximum
 LOT_PRODUIT = 100                 # ASIN par requete /product (maximum Keepa)
@@ -148,6 +169,9 @@ FICHIER_VUS = "vus.json"
 FICHIER_HISTORIQUE = "historique.json"
 FICHIER_PAGE = "index.html"
 
+# Un nom de fichier d image Amazon, « 41uvDx3VrcL.jpg ».
+MOTIF_IMAGE = re.compile(r"^[A-Za-z0-9%+_-]{6,60}[.](?:jpg|jpeg|png|gif)$")
+
 EST = timezone(timedelta(hours=-4))
 # Les horodatages Keepa comptent les minutes depuis le 1er janvier 2011 UTC.
 EPOQUE_KEEPA = datetime(2011, 1, 1, tzinfo=timezone.utc)
@@ -160,6 +184,40 @@ JETONS_VUS = None
 
 def maintenant():
     return datetime.now(EST)
+
+
+def nom_image(brut):
+    """Le nom de fichier de l image, tel que Keepa le transporte.
+
+    Keepa envoie ce nom sous forme de tableau d octets, parfois de chaine
+    deja lisible. On rend les deux cas au meme resultat, « 41uvDx3VrcL.jpg »,
+    et on ignore sans bruit tout ce qui n y ressemble pas.
+    """
+    if not brut:
+        return None
+    if isinstance(brut, (list, tuple, bytes, bytearray)):
+        try:
+            brut = bytes(int(o) & 0xFF for o in brut).decode("ascii")
+        except (ValueError, UnicodeDecodeError):
+            return None
+    brut = str(brut).strip()
+    return brut if MOTIF_IMAGE.match(brut) else None
+
+
+def miniature(nom, asin):
+    """L URL de la vignette, en 160 pixels de cote.
+
+    Amazon accepte un suffixe de taille glisse avant l extension : demander
+    « ._SL160_.jpg » evite de telecharger une image pleine resolution pour
+    l afficher dans un carre de 72 pixels. Sans nom de fichier, on retombe sur
+    l URL construite a partir de l ASIN, qui marche pour la majorite du
+    catalogue.
+    """
+    if nom:
+        base, _, ext = nom.rpartition(".")
+        return f"https://m.media-amazon.com/images/I/{base}._SL160_.{ext}"
+    return (f"https://images-na.ssl-images-amazon.com/images/P/"
+            f"{asin}.01._SL160_.jpg")
 
 
 # ---------------------------------------------------------------------------
@@ -206,79 +264,133 @@ def reference_grossiere(offre, i):
     return valeurs[(len(valeurs) - 1) // 2] / 100.0
 
 
-def candidat(offre):
-    """Pre-tri bon marche. Genereux : c est /product qui tranchera."""
-    prix, i = prix_courant(offre)
-    if prix is None or prix < PRIX_MIN:
+def categorie_exclue(asin, rayon):
+    """Vrai pour les livres, la musique et les films.
+
+    Deux signaux. Le premier : un ASIN qui commence par un chiffre est un
+    ISBN-10, donc un livre, sans exception. Le second : le rayon racine, que
+    /deal fournit gratuitement.
+
+    Pourquoi les exclure : sur ces fiches, tous les vendeurs et toutes les
+    editions partagent un seul ASIN. Un titre epuise reste liste un an a
+    2 060 $ par un revendeur pendant que les 1 605 avis viennent de l edition
+    de poche a 12 $. La serie est coherente avec elle-meme, le produit
+    « vend », il a des avis — aucun garde-fou statistique ne la distingue.
+
+    Ce test se fait au PRE-TRI, avant tout appel a /product. Il etait d abord
+    place apres, dans le jugement : sur un balayage complet, 241 des 332
+    candidats etaient des livres, donc 241 jetons depenses pour verifier des
+    choses connues d avance. Le deplacer divise le cout d un passage par deux.
+
+    Une premiere version interrogeait productGroup et binding cotes /product.
+    Le journal a montre qu ils valent None : le code paraissait marcher et ne
+    faisait rien.
+    """
+    if (asin or "")[:1].isdigit():
+        return True
+    return rayon in RACINES_EXCLUES
+
+
+def candidat(offre, serie=NEUF, nom_serie="neuf"):
+    """Pre-tri bon marche. Genereux : c est /product qui tranchera.
+
+    serie designe le type de prix balaye — neuf, Amazon ou Entrepot. On lit
+    cette case-la du tableau current et on la compare a la moyenne de la meme
+    serie : melanger les deux fausserait la comparaison.
+    """
+    asin = offre.get("asin")
+    if categorie_exclue(asin, offre.get("rootCat")):
         return None
-    grossier = reference_grossiere(offre, i)
+
+    brut = case(offre.get("current") or [], serie)
+    if not brut:
+        return None
+    prix = brut / 100.0
+    if prix < PRIX_MIN:
+        return None
+    grossier = reference_grossiere(offre, serie)
     if grossier is None or grossier - prix < ECART_MIN:
         return None
 
     courant = offre.get("current") or []
     note = case(courant, NOTE)
     return {
-        "asin": offre.get("asin"),
+        "asin": asin,
         "titre": (offre.get("title") or "").strip(),
         "prix": round(prix, 2),
         "grossier": round(grossier, 2),
         "rayon": offre.get("rootCat"),
+        "serie": serie,
+        "nom_serie": nom_serie,
+        "image": nom_image(offre.get("image")),
         "note": round(note / 10, 1) if note else None,
         "avis": case(courant, AVIS),
-        "lien": f"https://www.amazon.ca/dp/{offre.get('asin')}?tag={TAG}",
+        "lien": f"https://www.amazon.ca/dp/{asin}?tag={TAG}",
         "vu": maintenant().strftime("%Y-%m-%d %H:%M"),
     }
 
 
 def balayer(cle):
-    """Le filet large : vingt-cinq pages de /deal, 125 jetons au plus.
+    """Le filet large : trois series de prix, vingt-cinq pages chacune.
 
-    Deux arrets anticipes. Une page qui renvoie moins de 150 offres est la
-    derniere : inutile de payer pour du vide. Et si le solde de jetons tombe
-    sous la reserve, on s arrete la — les autres scenarios Keepa de la maison
-    puisent dans le meme compte, et une veille qui les assecherait ne vaudrait
-    pas ce qu elle coute.
+    Deux arrets anticipes par serie. Une page qui renvoie moins de 150 offres
+    est la derniere : inutile de payer pour du vide — sur le neuf, le gisement
+    s epuise vers la page 22. Et si le solde de jetons tombe sous la reserve,
+    on s arrete la : les autres scenarios Keepa de la maison puisent dans le
+    meme compte, et une veille qui les assecherait ne vaudrait pas ce qu elle
+    coute.
+
+    Un ASIN vu dans une serie n est pas repris dans les suivantes : le neuf
+    passe en premier parce que c est la serie la plus fiable.
     """
     trouves, vus_asin = [], set()
+    exclus = 0
     global JETONS_VUS
-    for page in range(PAGES):
-        selection = {
-            "page": page, "domainId": DOMAINE, "priceTypes": [NEUF],
-            "dateRange": JOUR, "deltaPercentRange": [RABAIS_MIN_PCT, 100],
-            "isRangeEnabled": True, "isFilterEnabled": True, "sortType": 4,
-        }
-        try:
-            r = requests.get(KEEPA_DEAL, timeout=90,
-                             params={"key": cle, "selection": json.dumps(selection)})
-            r.raise_for_status()
-            paquet = r.json()
-        except (requests.RequestException, ValueError) as e:
-            print(f"  page {page} ignoree ({type(e).__name__})")
-            continue
-
-        offres = ((paquet.get("deals") or {}).get("dr")) or []
-        if not offres:
-            break
-        for o in offres:
-            asin = o.get("asin")
-            if not asin or asin in vus_asin:
+    for serie, nom_serie in TYPES_BALAYES:
+        print(f"  — serie {nom_serie}")
+        for page in range(PAGES):
+            selection = {
+                "page": page, "domainId": DOMAINE, "priceTypes": [serie],
+                "dateRange": JOUR, "deltaPercentRange": [RABAIS_MIN_PCT, 100],
+                "isRangeEnabled": True, "isFilterEnabled": True, "sortType": 4,
+            }
+            try:
+                r = requests.get(KEEPA_DEAL, timeout=90,
+                                 params={"key": cle,
+                                         "selection": json.dumps(selection)})
+                r.raise_for_status()
+                paquet = r.json()
+            except (requests.RequestException, ValueError) as e:
+                print(f"    page {page} ignoree ({type(e).__name__})")
                 continue
-            vus_asin.add(asin)
-            c = candidat(o)
-            if c:
-                trouves.append(c)
-        reste = paquet.get("tokensLeft")
-        if isinstance(reste, int):
-            JETONS_VUS = reste
-        print(f"  page {page} : {len(offres)} offres, {len(trouves)} candidat(s) "
-              f"cumule(s), {reste} jetons")
 
-        if len(offres) < 150:
-            print(f"  fin du gisement a la page {page}")
-            break
-        if isinstance(reste, int) and reste < RESERVE_JETONS + 200:
-            print(f"  arret : plus que {reste} jetons, on garde la reserve")
-            break
+            offres = ((paquet.get("deals") or {}).get("dr")) or []
+            if not offres:
+                break
+            for o in offres:
+                asin = o.get("asin")
+                if not asin or asin in vus_asin:
+                    continue
+                vus_asin.add(asin)
+                if categorie_exclue(asin, o.get("rootCat")):
+                    exclus += 1
+                    continue
+                c = candidat(o, serie, nom_serie)
+                if c:
+                    trouves.append(c)
+            reste = paquet.get("tokensLeft")
+            if isinstance(reste, int):
+                JETONS_VUS = reste
+            print(f"    page {page} : {len(offres)} offres, {len(trouves)} "
+                  f"candidat(s) cumule(s), {reste} jetons")
+
+            if len(offres) < 150:
+                print(f"    fin du gisement a la page {page}")
+                break
+            if isinstance(reste, int) and reste < RESERVE_JETONS + 200:
+                print(f"    arret : plus que {reste} jetons, on garde la reserve")
+                return trouves
+    print(f"  {exclus} livre(s), disque(s) ou film(s) ecarte(s) avant /product")
     return trouves
 
 
@@ -335,7 +447,7 @@ def minutes_keepa(moment):
     return int((moment - EPOQUE_KEEPA).total_seconds() // 60)
 
 
-def analyser_historique(produit, fin=None):
+def analyser_historique(produit, fin=None, serie=NEUF):
     """Renvoie (mediane 90 j, plancher d avant, jours de prix connus).
 
     Le plancher exclut les 48 dernieres heures. Sans cette exclusion, la
@@ -350,21 +462,21 @@ def analyser_historique(produit, fin=None):
     qui soit.
     """
     csv = produit.get("csv") or []
-    serie = None
-    for i in (NEUF, AMAZON):
+    suite = None
+    for i in (serie, NEUF, AMAZON):
         s = csv[i] if i < len(csv) else None
         if s and len(s) >= 4:
-            serie = s
+            suite = s
             break
-    if serie is None:
+    if suite is None:
         return None, None, 0
 
     if fin is None:
         fin = minutes_keepa(datetime.now(timezone.utc))
-    m90 = mediane_ponderee(intervalles(serie, fin - FENETRE_MEDIANE * 1440, fin))
+    m90 = mediane_ponderee(intervalles(suite, fin - FENETRE_MEDIANE * 1440, fin))
 
     avant = fin - IGNORER_RECENT_H * 60
-    anciens = intervalles(serie, fin - 365 * 1440, avant)
+    anciens = intervalles(suite, fin - 365 * 1440, avant)
     plancher = min((p for p, _ in anciens), default=None)
     couverture = sum(d for _, d in anciens) / 1440.0
     return m90, plancher, couverture
@@ -391,42 +503,14 @@ def stock_connu(stats):
     return 100 - int(v)
 
 
-def categorie_exclue(prise):
-    """Vrai pour les livres, la musique et les films.
-
-    Deux signaux. Le premier : un ASIN qui commence par un chiffre est un
-    ISBN-10, donc un livre, sans exception — c est ce qui a ecarte 136 des
-    193 candidats au passage v3. Le second : le rayon racine fourni par /deal.
-
-    La premiere version interrogeait productGroup et binding cotes /product.
-    Le journal a montre qu ils valent None : Keepa ne les renvoie pas ici. Le
-    code paraissait marcher et ne faisait rien.
-
-    Sur ces fiches, tous les vendeurs et toutes les editions partagent le meme
-    ASIN. Un titre epuise reste liste un an a 2 060 $ par un revendeur pendant
-    que les 1 605 avis viennent de l edition de poche a 12 $. La serie de prix
-    est alors parfaitement coherente avec elle-meme, le produit « vend », il a
-    des avis — aucun des garde-fous precedents ne la voit passer. C est ce qui
-    remplissait la page au passage v3 : 24 anomalies, 22 livres.
-
-    Ce ne sont de toute facon pas les rabais recherches.
-    """
-    if (prise.get("asin") or "")[:1].isdigit():
-        return True
-    return prise.get("rayon") in RACINES_EXCLUES
-
-
 def juger(prise, produit, fin=None):
     """Le verdict, ecrit dans la prise. Renvoie True si on publie.
 
     Chaque refus est enregistre dans prise["refus"] : c est ce qui permet de
     comprendre, en lisant le journal du passage, pourquoi la page est vide.
     """
-    if categorie_exclue(prise):
-        prise["refus"] = "livre, musique ou film"
-        return False
-
-    m90, plancher, couverture = analyser_historique(produit, fin)
+    m90, plancher, couverture = analyser_historique(
+        produit, fin, prise.get("serie", NEUF))
     stats = produit.get("stats") or {}
     prix = prise["prix"]
 
@@ -578,13 +662,28 @@ def carte(p, neuf=False):
               if p.get("plancher") else "plancher inconnu")
     if p.get("ventes90"):
         detail += f' · {p["ventes90"]} vente(s) estimée(s) en 90 j'
+    serie = (f' · <span class="sr">{e(p["nom_serie"])}</span>'
+             if p.get("nom_serie") and p["nom_serie"] != "neuf" else "")
+
+    # Deux URL : celle de Keepa d abord, l URL construite a partir de l ASIN en
+    # secours. onerror bascule de l une a l autre, puis efface la vignette si
+    # aucune ne repond — une icone cassee est pire que pas d image du tout.
+    secours = miniature(None, p["asin"])
+    bascule = (f"if(this.src!=='{secours}')"
+               f"{{this.src='{secours}'}}"
+               f"else{{this.style.visibility='hidden'}}")
+    vignette = (f'<img class="ph" loading="lazy" alt="" '
+                f'src="{e(miniature(p.get("image"), p["asin"]))}" '
+                f'onerror="{bascule}">')
+
     return f"""<article class="p">
   <div class="ec">−{p['ecart']:.0f} $</div>
+  {vignette}
   <div class="co">
     <h2><a href="{e(p['lien'])}" target="_blank" rel="noopener">{e(p['titre'][:120])}</a>{marque}</h2>
     <p class="pr"><strong>{p['prix']:.2f} $</strong> <s>{p['normal']:.2f} $</s>
        <span class="pc">−{p['pct']} %</span> {note}</p>
-    <p class="me"><span class="b conf">{detail}</span> · repéré le {e(p['vu'])}
+    <p class="me"><span class="b conf">{detail}</span>{serie} · repéré le {e(p['vu'])}
        · <code>{e(p['asin'])}</code></p>
   </div>
 </article>"""
@@ -632,8 +731,11 @@ h1.h2{{color:var(--gris);font-size:16px;font-weight:600;
        border-top:1px solid #294256;padding-top:28px}}
 .p{{display:flex;gap:16px;background:var(--nuit2);border-radius:12px;
     padding:14px 16px;margin-bottom:10px;border-left:4px solid var(--vert)}}
-.ec{{flex:0 0 96px;font-size:22px;font-weight:700;color:var(--vert);
+.ec{{flex:0 0 88px;font-size:22px;font-weight:700;color:var(--vert);
      display:flex;align-items:center;justify-content:center}}
+.ph{{flex:0 0 72px;width:72px;height:72px;object-fit:contain;border-radius:8px;
+     background:#fff;padding:4px;align-self:center}}
+.sr{{color:var(--or)}}
 .co{{flex:1;min-width:0}}
 h2{{font-size:15px;margin:0 0 6px;font-weight:600;line-height:1.35}}
 h2 a{{color:var(--creme);text-decoration:none}}
@@ -665,6 +767,12 @@ footer li{{margin-bottom:4px}}
   partagée par tous les vendeurs et toutes les éditions, si bien qu’un titre
   épuisé listé un an à 2 000 $ ressemble à une aubaine dès qu’un vrai
   exemplaire réapparaît.
+  <br><br>
+  Trois séries de prix sont balayées séparément et comparées chacune à son
+  propre historique : le neuf des vendeurs tiers, le prix pratiqué par Amazon
+  lui-même, et les offres Entrepôt. Une offre Entrepôt à 30 % sous le neuf est
+  une offre Entrepôt ordinaire ; ce qui compte, c’est l’écart avec ce que
+  cette série-là vaut d’habitude.
   <br><br>
   Pour le reste, un article doit franchir cinq tests : être au moins 10 %
   <strong>sous son plus bas prix des douze derniers mois</strong>, les

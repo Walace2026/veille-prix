@@ -7,25 +7,66 @@ a trois dollars — les accidents.
 
 POURQUOI CE MONTAGE
 
-Le premier reflexe serait de demander a Keepa l historique de chaque produit
-et de comparer. C est ruineux : /product coute UN jeton PAR ASIN, et le compte
-plafonne a 1200 jetons (20 par minute, et les jetons expirent apres 60 min, ce
-qui fixe le plafond a une heure de recharge).
+/product coute UN jeton PAR ASIN ; le compte plafonne a 1200 jetons (20 par
+minute, et les jetons expirent apres 60 min, ce qui fixe le plafond a une
+heure de recharge). Interroger tout le catalogue de cette facon est ruineux.
 
 /deal, lui, coute CINQ jetons par tranche de 150 offres. Huit pages, soit 1200
-offres, reviennent donc a 40 jetons. On peut balayer tout le catalogue toutes
-les heures pour 960 jetons par jour, moins de 4 % de la recharge quotidienne.
+offres, reviennent a 40 jetons. D ou la strategie en deux temps :
 
-D ou la strategie en deux temps :
   1. un filet large et bon marche  — /deal, 40 jetons, tout le catalogue ;
-  2. une verification ciblee       — /product, un jeton, seulement sur les
-                                     rares candidats qui franchissent le seuil.
+  2. un jugement serieux            — /product, un jeton par candidat, sur les
+                                      quelques centaines qui franchissent le
+                                      pre-tri.
+
+Compte : 40 + environ 250 jetons par passage, soit ~7000 par jour, un quart de
+la recharge quotidienne (28 800). Et jamais plus de 340 d un coup, tres loin
+du plafond de 1200.
+
+POURQUOI ON NE PEUT PAS SE FIER AUX MOYENNES DE KEEPA
+
+Premier essai reel : 212 « anomalies », toutes fausses. Un piston de moto a
+195 $ annonce « avant 126 717 $ », une rotule de suspension a 98 $ « avant
+3 905 $ », un livre de poche a 236 $ « avant 2 043 $ ».
+
+L explication est la meme dans les trois cas : l article n etait pas
+disponible. Un seul vendeur le listait, a un prix delirant, faute de stock.
+La moyenne Keepa — sur un jour comme sur 90 — enregistre ce prix fantome.
+Quand un vrai vendeur reapparait a 195 $, Keepa annonce -100 %. Ce n est pas
+une erreur de prix, c est un retour en stock.
+
+Prendre la mediane des quatre moyennes ne corrige rien : les quatre sont
+polluees en meme temps. Il faut donc juger autrement.
+
+LE JUGEMENT, VERSION 3
+
+On telecharge l historique complet (il vient avec /product) et on calcule
+nous-memes trois choses que Keepa ne donne pas :
+
+  - la MEDIANE PONDEREE PAR LE TEMPS sur 90 jours. Une annonce a 130 000 $
+    affichee trois heures fait exploser une moyenne ; elle ne deplace pas une
+    mediane ponderee par la duree.
+
+  - le PLANCHER D AVANT : le prix le plus bas des 365 derniers jours en
+    excluant les 48 dernieres heures. L exclusion est essentielle : si la
+    baisse d aujourd hui est justement l anomalie, elle devient le minimum de
+    l annee et rend le test circulaire.
+
+  - la COHERENCE de la serie : le rapport entre la mediane 90 jours et le
+    plancher d avant. Un vrai produit oscille dans un rapport de 1 a 3. Le
+    piston affiche 1160. Au-dela de 8, la serie ne veut rien dire.
+
+S y ajoutent deux garde-fous tires de /product :
+
+  - le produit doit VENDRE (salesRankDrops90 > 0). Les fantomes ne vendent
+    jamais ; c est meme ce qui les rend fantomes.
+  - il doit avoir ete EN STOCK au moins la moitie des 90 derniers jours.
 
 LE CRITERE EST EN DOLLARS, PAS EN POURCENTAGE
 
 Un rabais de 94 % sur un porte-cles a 3 $ ne vaut rien. Le meme pourcentage
-sur un velo electrique a 4 500 $, c est une prise. On trie donc sur l ECART EN
-DOLLARS, et le pourcentage ne sert qu a preselectionner cote serveur.
+sur un velo electrique a 4 500 $, c est une prise. On trie sur l ECART EN
+DOLLARS ; le pourcentage ne sert qu a preselectionner cote serveur.
 """
 import json
 import os
@@ -50,15 +91,28 @@ PAGES = 8                         # 8 x 150 = 1200 offres, 40 jetons
 RABAIS_MIN_PCT = 60               # preselection cote serveur
 ECART_MIN = 200.00                # l ecart en dollars qui declenche l alerte
 PRIX_MIN = 25.00                  # sous ce prix, meme un gros ecart est du bruit
-CONFIRMER_MAX = 60                # appels /product par passage, au maximum
+VERIFIER_MAX = 300                # appels /product par passage, au maximum
+LOT_PRODUIT = 100                 # ASIN par requete /product (maximum Keepa)
 MEMOIRE_HEURES = 48               # on ne resignale pas deux fois la meme chose
 GARDER_HISTORIQUE = 200
+
+# Les seuils du jugement, version 3. Voir l en-tete pour le raisonnement.
+SOUS_LE_PLANCHER = 0.90           # il faut etre 10 % sous le plancher d avant
+COHERENCE_MAX = 8.0               # mediane90 / plancher : au-dela, serie folle
+FENETRE_MEDIANE = 90              # jours
+IGNORER_RECENT_H = 48             # heures exclues du calcul du plancher
+STOCK_MIN_PCT = 50                # en stock au moins la moitie du temps
+VENTES_MIN = 1                    # au moins une vente estimee en 90 jours
+COUVERTURE_MIN_J = 30             # jours de prix connus exiges avant de juger
 
 TAG = "dtlinformat0f-20"
 FICHIER_VUS = "vus.json"
 FICHIER_HISTORIQUE = "historique.json"
 FICHIER_PAGE = "index.html"
+
 EST = timezone(timedelta(hours=-4))
+# Les horodatages Keepa comptent les minutes depuis le 1er janvier 2011 UTC.
+EPOQUE_KEEPA = datetime(2011, 1, 1, tzinfo=timezone.utc)
 
 
 def maintenant():
@@ -66,16 +120,16 @@ def maintenant():
 
 
 # ---------------------------------------------------------------------------
-# Lecture des donnees Keepa
+# Petits acces surs aux tableaux Keepa
 # ---------------------------------------------------------------------------
 
 def case(tableau, i):
-    """Une valeur de prix Keepa, ou None. -1 signifie « inconnu » chez Keepa."""
+    """Valeur i du tableau, ou None. Keepa met -1 pour « inconnu »."""
     try:
         v = tableau[i]
     except (IndexError, TypeError):
         return None
-    return v if isinstance(v, (int, float)) and v > 0 else None
+    return None if v is None or v < 0 else v
 
 
 def case2(tableau, i, j):
@@ -94,20 +148,11 @@ def prix_courant(offre):
     return None, None
 
 
-def prix_normal(offre, i):
-    """Ce que l article vaut d habitude — la MEDIANE des moyennes connues.
+def reference_grossiere(offre, i):
+    """Le prix « avant » annonce par Keepa — la mediane de ses moyennes.
 
-    Premiere version : on prenait la moyenne 90 jours. Resultat au premier
-    essai reel, un piston de moto a 195 $ annonce « avant 132 453 $ », et un
-    livre de poche a 236 $ « avant 2 059 $ ». La moyenne 90 jours de Keepa
-    inclut les prix delirants qu un vendeur tiers a affiches pendant quelques
-    heures ; une seule annonce a 130 000 $ suffit a la faire exploser.
-
-    La mediane des quatre intervalles (jour, semaine, mois, 90 jours) resiste
-    a ces valeurs aberrantes : il faudrait que la moitie des periodes soient
-    fausses pour la tromper. Et elle laisse passer les vraies anomalies : quand
-    un article a 4 500 $ tombe a 250 $ ce matin, les quatre moyennes tournent
-    encore autour de 4 500 $, donc la mediane aussi.
+    Cette valeur ne sert QU AU PRE-TRI : elle est souvent fausse (voir
+    l en-tete). Le vrai jugement se fait plus loin, sur l historique.
     """
     avg = offre.get("avg") or []
     valeurs = sorted(v for v in
@@ -115,21 +160,16 @@ def prix_normal(offre, i):
                      if v)
     if len(valeurs) < 2:
         return None
-    # Mediane basse sur un nombre pair : on prefere sous-estimer l ecart.
     return valeurs[(len(valeurs) - 1) // 2] / 100.0
 
 
 def candidat(offre):
-    """Renvoie une prise, ou None. Tout le jugement est ici."""
+    """Pre-tri bon marche. Genereux : c est /product qui tranchera."""
     prix, i = prix_courant(offre)
     if prix is None or prix < PRIX_MIN:
         return None
-    normal = prix_normal(offre, i)
-    if normal is None or normal <= prix:
-        return None
-
-    ecart = normal - prix
-    if ecart < ECART_MIN:
+    grossier = reference_grossiere(offre, i)
+    if grossier is None or grossier - prix < ECART_MIN:
         return None
 
     courant = offre.get("current") or []
@@ -138,15 +178,11 @@ def candidat(offre):
         "asin": offre.get("asin"),
         "titre": (offre.get("title") or "").strip(),
         "prix": round(prix, 2),
-        "normal": round(normal, 2),
-        "ecart": round(ecart, 2),
-        "pct": round(100 * ecart / normal),
+        "grossier": round(grossier, 2),
         "note": round(note / 10, 1) if note else None,
         "avis": case(courant, AVIS),
         "lien": f"https://www.amazon.ca/dp/{offre.get('asin')}?tag={TAG}",
         "vu": maintenant().strftime("%Y-%m-%d %H:%M"),
-        "plancher": None,
-        "confirme": None,
     }
 
 
@@ -184,44 +220,185 @@ def balayer(cle):
     return trouves
 
 
-def confirmer(cle, prises):
-    """Le second temps : verifier contre le plancher des 365 derniers jours.
+# ---------------------------------------------------------------------------
+# L historique : ce que Keepa ne calcule pas pour nous
+# ---------------------------------------------------------------------------
 
-    Un jeton par ASIN, et seulement sur la poignee de candidats retenus. Un
-    prix sous son propre plancher d un an n a jamais ete aussi bas : c est la
-    signature d une anomalie, pas d une promotion saisonniere.
+def intervalles(serie, depuis, jusqu_a):
+    """Decoupe une serie csv Keepa en (prix_en_dollars, duree_en_minutes).
+
+    Une serie csv est plate : [minute, prix, minute, prix, ...]. Chaque couple
+    dit « a partir de cette minute, le prix est celui-la », jusqu au couple
+    suivant. Un prix de -1 signifie « pas disponible » : on saute l intervalle
+    plutot que de le compter comme un prix de zero.
+
+    depuis et jusqu_a sont en minutes Keepa. On rogne les intervalles qui
+    depassent la fenetre pour ne compter que le temps reellement dedans.
     """
-    if not prises:
-        return
-    lot = [p["asin"] for p in prises[:CONFIRMER_MAX]]
-    try:
-        r = requests.get(KEEPA_PRODUIT, timeout=120,
-                         params={"key": cle, "domain": DOMAINE,
-                                 "asin": ",".join(lot), "stats": 365})
-        r.raise_for_status()
-        produits = r.json().get("products") or []
-    except (requests.RequestException, ValueError) as e:
-        print(f"  confirmation impossible ({type(e).__name__}) — on garde les candidats")
-        return
-
-    par_asin = {p.get("asin"): p for p in produits}
-    for prise in prises:
-        p = par_asin.get(prise["asin"])
-        if not p:
+    if not serie or len(serie) < 2:
+        return []
+    resultat = []
+    for k in range(0, len(serie) - 1, 2):
+        t = serie[k]
+        p = serie[k + 1]
+        fin = serie[k + 2] if k + 2 < len(serie) else jusqu_a
+        debut = max(t, depuis)
+        fin = min(fin, jusqu_a)
+        if p is None or p < 0 or fin <= debut:
             continue
-        stats = p.get("stats") or {}
-        mini = None
-        for i in (NEUF, AMAZON):
-            try:
-                paire = (stats.get("min") or [])[i]
-                if isinstance(paire, list) and len(paire) > 1 and paire[1] > 0:
-                    mini = paire[1] / 100.0
-                    break
-            except (IndexError, TypeError):
-                continue
-        if mini:
-            prise["plancher"] = round(mini, 2)
-            prise["confirme"] = prise["prix"] <= mini
+        resultat.append((p / 100.0, fin - debut))
+    return resultat
+
+
+def mediane_ponderee(morceaux):
+    """La mediane du prix ponderee par le temps passe a ce prix.
+
+    C est la statistique qui resiste aux annonces fantomes : trois heures a
+    130 000 $ pesent trois heures, pas plus.
+    """
+    if not morceaux:
+        return None
+    total = sum(d for _, d in morceaux)
+    if total <= 0:
+        return None
+    cumul = 0
+    for prix, duree in sorted(morceaux):
+        cumul += duree
+        if cumul >= total / 2:
+            return prix
+    return sorted(morceaux)[-1][0]
+
+
+def minutes_keepa(moment):
+    return int((moment - EPOQUE_KEEPA).total_seconds() // 60)
+
+
+def analyser_historique(produit, fin=None):
+    """Renvoie (mediane 90 j, plancher d avant, jours de prix connus).
+
+    Le plancher exclut les 48 dernieres heures. Sans cette exclusion, la
+    baisse qu on cherche a detecter deviendrait elle-meme le minimum de
+    l annee, et le test « est-il sous son plancher » serait toujours faux.
+
+    Le troisieme retour est la COUVERTURE : combien de jours, sur les 365,
+    on connait vraiment un prix. Un article mis en vente la semaine derniere
+    n a pas de plancher digne de ce nom ; on ne veut pas le juger. On compte
+    des jours et non des points de mesure : un prix stable toute l annee ne
+    produit qu un seul point, et c est pourtant l historique le plus solide
+    qui soit.
+    """
+    csv = produit.get("csv") or []
+    serie = None
+    for i in (NEUF, AMAZON):
+        s = csv[i] if i < len(csv) else None
+        if s and len(s) >= 4:
+            serie = s
+            break
+    if serie is None:
+        return None, None, 0
+
+    if fin is None:
+        fin = minutes_keepa(datetime.now(timezone.utc))
+    m90 = mediane_ponderee(intervalles(serie, fin - FENETRE_MEDIANE * 1440, fin))
+
+    avant = fin - IGNORER_RECENT_H * 60
+    anciens = intervalles(serie, fin - 365 * 1440, avant)
+    plancher = min((p for p, _ in anciens), default=None)
+    couverture = sum(d for _, d in anciens) / 1440.0
+    return m90, plancher, couverture
+
+
+def stat_entier(stats, nom, defaut=0):
+    v = stats.get(nom)
+    return v if isinstance(v, (int, float)) and v >= 0 else defaut
+
+
+def juger(prise, produit, fin=None):
+    """Le verdict, ecrit dans la prise. Renvoie True si on publie.
+
+    Chaque refus est enregistre dans prise["refus"] : c est ce qui permet de
+    comprendre, en lisant le journal du passage, pourquoi la page est vide.
+    """
+    m90, plancher, couverture = analyser_historique(produit, fin)
+    stats = produit.get("stats") or {}
+    prix = prise["prix"]
+
+    prise["mediane90"] = round(m90, 2) if m90 else None
+    prise["plancher"] = round(plancher, 2) if plancher else None
+    prise["ventes90"] = stat_entier(stats, "salesRankDrops90")
+    rupture = stat_entier(stats, "outOfStockPercentage90", -1)
+    prise["stock90"] = 100 - rupture if rupture >= 0 else None
+
+    if m90 is None or plancher is None or couverture < COUVERTURE_MIN_J:
+        prise["refus"] = "historique trop court pour juger"
+        return False
+    if prix > plancher * SOUS_LE_PLANCHER:
+        prise["refus"] = "pas sous son plancher de 12 mois"
+        return False
+    if m90 - prix < ECART_MIN:
+        prise["refus"] = "ecart reel inferieur au seuil"
+        return False
+    if plancher > 0 and m90 / plancher > COHERENCE_MAX:
+        prise["refus"] = "serie de prix incoherente (annonce fantome)"
+        return False
+    if prise["ventes90"] < VENTES_MIN:
+        prise["refus"] = "aucune vente estimee en 90 jours"
+        return False
+    if prise["stock90"] is not None and prise["stock90"] < STOCK_MIN_PCT:
+        prise["refus"] = "en rupture plus de la moitie du temps"
+        return False
+
+    prise["normal"] = round(m90, 2)
+    prise["ecart"] = round(m90 - prix, 2)
+    prise["pct"] = round(100 * (m90 - prix) / m90)
+    prise["refus"] = None
+    return True
+
+
+def verifier(cle, prises):
+    """Le second temps : un jeton par candidat, par lots de cent.
+
+    Renvoie la liste des prises qui passent le jugement. On imprime aussi les
+    motifs de refus : c est le tableau de bord qui permet de regler les seuils
+    sans deviner.
+    """
+    gardees = []
+    lot_total = prises[:VERIFIER_MAX]
+    if len(prises) > VERIFIER_MAX:
+        print(f"  ATTENTION : {len(prises) - VERIFIER_MAX} candidat(s) non "
+              f"verifie(s), plafond de {VERIFIER_MAX} atteint")
+
+    par_asin = {}
+    for debut in range(0, len(lot_total), LOT_PRODUIT):
+        tranche = lot_total[debut:debut + LOT_PRODUIT]
+        try:
+            r = requests.get(KEEPA_PRODUIT, timeout=180,
+                             params={"key": cle, "domain": DOMAINE,
+                                     "asin": ",".join(p["asin"] for p in tranche),
+                                     "stats": 365})
+            r.raise_for_status()
+            paquet = r.json()
+        except (requests.RequestException, ValueError) as e:
+            print(f"  lot {debut // LOT_PRODUIT} : echec ({type(e).__name__})")
+            continue
+        for p in paquet.get("products") or []:
+            par_asin[p.get("asin")] = p
+        print(f"  lot {debut // LOT_PRODUIT} : {len(tranche)} ASIN, "
+              f"{paquet.get('tokensLeft', '?')} jetons restants")
+
+    motifs = {}
+    for prise in lot_total:
+        produit = par_asin.get(prise["asin"])
+        if produit is None:
+            prise["refus"] = "produit introuvable"
+        elif juger(prise, produit):
+            gardees.append(prise)
+            continue
+        motifs[prise["refus"]] = motifs.get(prise["refus"], 0) + 1
+
+    for motif, n in sorted(motifs.items(), key=lambda x: -x[1]):
+        print(f"    ecarte {n:4d} x  {motif}")
+    return gardees
 
 
 # ---------------------------------------------------------------------------
@@ -274,25 +451,26 @@ def e(s):
 
 
 def carte(p, neuf=False):
-    badge = ('<span class="b conf">sous son plancher de 365 jours</span>'
-             if p.get("confirme") else
-             ('<span class="b">plancher inconnu</span>' if p.get("plancher") is None
-              else f'<span class="b">plancher 365 j : {p["plancher"]:.2f} $</span>'))
     marque = '<span class="neuf">NOUVEAU</span>' if neuf else ""
     note = (f'<span class="n">{p["note"]}★ · {p["avis"]} avis</span>'
             if p.get("note") else "")
-    return f"""<article class="p{' fort' if p.get('confirme') else ''}">
+    detail = (f'plancher 12 mois : {p["plancher"]:.2f} $'
+              if p.get("plancher") else "plancher inconnu")
+    if p.get("ventes90"):
+        detail += f' · {p["ventes90"]} vente(s) estimée(s) en 90 j'
+    return f"""<article class="p">
   <div class="ec">−{p['ecart']:.0f} $</div>
   <div class="co">
     <h2><a href="{e(p['lien'])}" target="_blank" rel="noopener">{e(p['titre'][:120])}</a>{marque}</h2>
     <p class="pr"><strong>{p['prix']:.2f} $</strong> <s>{p['normal']:.2f} $</s>
        <span class="pc">−{p['pct']} %</span> {note}</p>
-    <p class="me">{badge} · repéré le {e(p['vu'])} · <code>{e(p['asin'])}</code></p>
+    <p class="me"><span class="b conf">{detail}</span> · repéré le {e(p['vu'])}
+       · <code>{e(p['asin'])}</code></p>
   </div>
 </article>"""
 
 
-def ecrire_page(neuves, historique, jetons, duree):
+def ecrire_page(neuves, historique, jetons, duree, examines=0):
     d = maintenant()
     corps = []
 
@@ -301,12 +479,14 @@ def ecrire_page(neuves, historique, jetons, duree):
         corps += [carte(p, neuf=True) for p in neuves]
     else:
         corps.append("<h1>Rien de neuf</h1>")
-        corps.append('<p class="vide">Aucun écart de plus de '
-                     f'{ECART_MIN:.0f} $ depuis le dernier passage. '
-                     'C’est le cas le plus fréquent — une vraie erreur de prix '
-                     'est rare, et c’est exactement ce qui la rend intéressante.</p>')
+        corps.append('<p class="vide">Aucun article ne passe les six tests '
+                     f'ce passage-ci ({examines} candidat(s) examiné(s) en '
+                     'détail). C’est le cas le plus fréquent — une vraie '
+                     'erreur de prix est rare, et c’est exactement ce qui la '
+                     'rend intéressante.</p>')
 
-    anciennes = [h for h in historique if h not in neuves][:40]
+    vus_asin = {p["asin"] for p in neuves}
+    anciennes = [h for h in historique if h.get("asin") not in vus_asin][:40]
     if anciennes:
         corps.append("<h1 class='h2'>Repérées dans les derniers jours</h1>")
         corps += [carte(p) for p in anciennes]
@@ -331,11 +511,9 @@ h1{{font-size:20px;margin:32px 0 16px}}
 h1.h2{{color:var(--gris);font-size:16px;font-weight:600;
        border-top:1px solid #294256;padding-top:28px}}
 .p{{display:flex;gap:16px;background:var(--nuit2);border-radius:12px;
-    padding:14px 16px;margin-bottom:10px;border-left:4px solid #2f4a60}}
-.p.fort{{border-left-color:var(--vert)}}
-.ec{{flex:0 0 96px;font-size:22px;font-weight:700;color:var(--or);
+    padding:14px 16px;margin-bottom:10px;border-left:4px solid var(--vert)}}
+.ec{{flex:0 0 96px;font-size:22px;font-weight:700;color:var(--vert);
      display:flex;align-items:center;justify-content:center}}
-.p.fort .ec{{color:var(--vert)}}
 .co{{flex:1;min-width:0}}
 h2{{font-size:15px;margin:0 0 6px;font-weight:600;line-height:1.35}}
 h2 a{{color:var(--creme);text-decoration:none}}
@@ -352,24 +530,33 @@ code{{font-size:12px;color:#6f8699}}
 .vide{{color:var(--gris)}}
 footer{{margin-top:48px;border-top:1px solid #294256;padding-top:16px;
         color:var(--gris);font-size:13px}}
+footer li{{margin-bottom:4px}}
 </style>
 <div class="w">
 <header>
   <b>VEILLE DES PRIX ANORMAUX</b>
   <p class="st">Dernier passage : {d.strftime('%Y-%m-%d %H:%M')} (heure de l’Est) ·
      {jetons} jetons Keepa restants · {duree} s ·
-     seuil : écart de {ECART_MIN:.0f} $ ou plus</p>
+     {examines} candidat(s) passés au crible</p>
 </header>
 {''.join(corps)}
 <footer>
-  Page privée, régénérée chaque heure. Le seuil est un <strong>écart en
-  dollars</strong>, pas un pourcentage : un rabais de 90 % sur un article à
-  3 $ ne vaut rien, le même sur un vélo à 4 500 $ en vaut la peine.
-  La mention verte signifie que le prix est passé sous son plus bas des
-  365 derniers jours — la vraie signature d’une anomalie.
+  Pour apparaître ici, un article doit franchir six tests : coûter au moins
+  {PRIX_MIN:.0f} $ ; être au moins 10 % <strong>sous son plus bas prix des
+  douze derniers mois</strong>, les 48 dernières heures exclues du calcul ;
+  afficher un écart d’au moins {ECART_MIN:.0f} $ avec sa <strong>médiane
+  pondérée par le temps sur 90 jours</strong> — pas la moyenne de Keepa, qui
+  est faussée par les annonces fantômes ; avoir une série de prix cohérente
+  (médiane au plus {COHERENCE_MAX:.0f} × son plancher) ; s’être vendu au moins
+  une fois en 90 jours ; et avoir été en stock au moins {STOCK_MIN_PCT} % du
+  temps.
   <br><br>
-  Amazon annule fréquemment les commandes passées sur un prix erroné.
-  Rien ici n’est vérifié à la main.
+  Ces règles viennent d’un premier essai qui avait sorti 212 fausses
+  anomalies : des articles indisponibles qu’un seul vendeur affichait à un
+  prix délirant, et dont le retour en stock ressemblait à une chute de 100 %.
+  <br><br>
+  Page privée, régénérée chaque heure. Amazon annule fréquemment les commandes
+  passées sur un prix erroné. Rien ici n’est vérifié à la main.
 </footer>
 </div>
 """
@@ -394,25 +581,27 @@ def main():
 
     print(f"Balayage de {PAGES} pages ({PAGES * 5} jetons)")
     prises = balayer(cle)
-    prises.sort(key=lambda p: p["ecart"], reverse=True)
-    print(f"{len(prises)} candidat(s) au-dessus de {ECART_MIN} $ d ecart")
+    prises.sort(key=lambda p: p["grossier"] - p["prix"], reverse=True)
+    print(f"{len(prises)} candidat(s) a verifier")
 
-    neuves = filtrer_deja_vus(prises)
+    gardees = verifier(cle, prises)
+    gardees.sort(key=lambda p: p["ecart"], reverse=True)
+    print(f"{len(gardees)} anomalie(s) apres jugement")
+
+    neuves = filtrer_deja_vus(gardees)
     print(f"{len(neuves)} nouvelle(s) depuis le dernier passage")
-
-    confirmer(cle, neuves)
 
     historique = charger(FICHIER_HISTORIQUE, [])
     historique = (neuves + historique)[:GARDER_HISTORIQUE]
     enregistrer(FICHIER_HISTORIQUE, historique)
 
     duree = int(time.time() - debut)
+    examines = min(len(prises), VERIFIER_MAX)
     with open(FICHIER_PAGE, "w", encoding="utf-8") as f:
-        f.write(ecrire_page(neuves, historique, jetons_restants(cle), duree))
+        f.write(ecrire_page(neuves, historique, jetons_restants(cle),
+                            duree, examines))
 
-    confirmees = sum(1 for p in neuves if p.get("confirme"))
-    print(f"OK : {len(neuves)} nouvelle(s), dont {confirmees} sous leur plancher "
-          f"365 j — {duree} s")
+    print(f"OK : {len(neuves)} nouvelle(s) sur {examines} examine(s) — {duree} s")
     return 0
 
 

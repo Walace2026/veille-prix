@@ -353,8 +353,14 @@ def stock_connu(stats):
     return 100 - int(v)
 
 
-def categorie_exclue(produit):
+def categorie_exclue(produit, asin=None):
     """Vrai pour les livres, la musique et les films.
+
+    Trois signaux, parce qu aucun ne suffit seul : le groupe de produit, la
+    reliure, et la forme de l ASIN. Un ASIN qui commence par un chiffre est un
+    ISBN-10 : c est un livre, sans exception. C est le signal le plus sur des
+    trois, et le seul qui ne depende pas de champs que Keepa remplit de facon
+    inegale.
 
     Sur ces fiches, tous les vendeurs et toutes les editions partagent le meme
     ASIN. Un titre epuise reste liste un an a 2 060 $ par un revendeur pendant
@@ -365,6 +371,9 @@ def categorie_exclue(produit):
 
     Ce ne sont de toute facon pas les rabais recherches.
     """
+    code = asin or produit.get("asin") or ""
+    if code[:1].isdigit():
+        return True
     groupe = (produit.get("productGroup") or "").strip().lower()
     reliure = (produit.get("binding") or "").strip().lower()
     return groupe in GROUPES_EXCLUS or reliure in RELIURES_EXCLUES
@@ -376,7 +385,7 @@ def juger(prise, produit, fin=None):
     Chaque refus est enregistre dans prise["refus"] : c est ce qui permet de
     comprendre, en lisant le journal du passage, pourquoi la page est vide.
     """
-    if categorie_exclue(produit):
+    if categorie_exclue(produit, prise.get("asin")):
         prise["refus"] = "livre, musique ou film"
         return False
 
@@ -458,6 +467,14 @@ def verifier(cle, prises):
 
     for motif, n in sorted(motifs.items(), key=lambda x: -x[1]):
         print(f"    ecarte {n:4d} x  {motif}")
+
+    # On imprime le groupe et la reliure des rescapes : c est comme ca qu on
+    # decouvre les valeurs exactes que Keepa emploie, et donc ce qu il reste
+    # a ajouter aux listes d exclusion quand un CD passe encore.
+    for prise in gardees:
+        p = par_asin.get(prise["asin"]) or {}
+        print(f"    garde {prise['asin']} · groupe={p.get('productGroup')!r} "
+              f"· reliure={p.get('binding')!r} · {prise['titre'][:60]}")
     return gardees
 
 

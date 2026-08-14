@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CSKK96YD",
+  "titre": "Stamperia International KFT Stamperia Scrapbooking Pad 10 sheets 30.5 x 30.5 (12x12) Maxi Background Selection Voyages Fantastiques, Multicoloured, 12 x 12 inch",
+  "prix": 27.63,
+  "grossier": 79.14,
+  "rayon": 2206275011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "51dS5-3XwNL.jpg",
+  "note": 4.8,
+  "avis": 32,
+  "lien": "https://www.amazon.ca/dp/B0CSKK96YD?tag=dtlinformat0f-20",
+  "vu": "2026-08-14 17:54",
+  "mediane90": 77.68,
+  "plancher": 62.74,
+  "ventes90": 1,
+  "stock90": 98,
+  "normal": 77.68,
+  "ecart": 50.05,
+  "pct": 64,
+  "refus": null
+ },
+ {
   "asin": "B07FX6CFS2",
   "titre": "Bar Stools Modern Black PU Leather Barstools with Back Adjustable Counter Height Swivel Bar Stool,Set of 2",
   "prix": 175.99,
@@ -4375,28 +4397,6 @@
   "normal": 98.43,
   "ecart": 64.86,
   "pct": 66,
-  "refus": null
- },
- {
-  "asin": "B0DL5N5MZT",
-  "titre": "SOLY HUX Women's Sleeveless V Neck Ruffle Trim Split Hem Dress Bodycon Long Dresses, Pure Yellow, Medium",
-  "prix": 33.21,
-  "grossier": 92.86,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31Vm9h7fdAL.jpg",
-  "note": 3.5,
-  "avis": 15,
-  "lien": "https://www.amazon.ca/dp/B0DL5N5MZT?tag=dtlinformat0f-20",
-  "vu": "2026-08-12 12:14",
-  "mediane90": 93.37,
-  "plancher": 57.04,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 93.37,
-  "ecart": 60.16,
-  "pct": 64,
   "refus": null
  }
 ]

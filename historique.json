@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0FVB8BRSP",
+  "titre": "Gap Women's Favorite Crewneck Tee T-Shirt, Plum Heather 669, X-Small",
+  "prix": 22.89,
+  "grossier": 74.54,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31SqwggQEoL.jpg",
+  "note": 3.0,
+  "avis": 2,
+  "lien": "https://www.amazon.ca/dp/B0FVB8BRSP?tag=dtlinformat0f-20",
+  "vu": "2026-08-15 01:58",
+  "mediane90": 73.51,
+  "plancher": 66.37,
+  "ventes90": 4,
+  "stock90": 100,
+  "normal": 73.51,
+  "ecart": 50.62,
+  "pct": 69,
+  "refus": null
+ },
+ {
   "asin": "B09QNMB6QZ",
   "titre": "Carhartt Women's GD0794W Women's High Dexterity Open Cuff Glove, Blackberry Grey, Medium",
   "prix": 25.99,
@@ -4375,28 +4397,6 @@
   "normal": 102.83,
   "ecart": 67.51,
   "pct": 66,
-  "refus": null
- },
- {
-  "asin": "B0CD7J8CZQ",
-  "titre": "Moessa Women's Strapless Flloral Print Bustier Corset Top Asymmetrical Hem Crop Tops Boned Tube Top, Black/White, X-Small",
-  "prix": 26.43,
-  "grossier": 86.87,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "51HnzC+sbGL.jpg",
-  "note": 3.7,
-  "avis": 29,
-  "lien": "https://www.amazon.ca/dp/B0CD7J8CZQ?tag=dtlinformat0f-20",
-  "vu": "2026-08-12 16:05",
-  "mediane90": 90.36,
-  "plancher": 35.54,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 90.36,
-  "ecart": 63.93,
-  "pct": 71,
   "refus": null
  }
 ]

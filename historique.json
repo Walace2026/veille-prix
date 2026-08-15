@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0F5S9TK7H",
+  "titre": "adidas Unisex-Adult Adizero Electric.2 Ii, White/Silver Metallic/White, 13",
+  "prix": 86.84,
+  "grossier": 216.38,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "21NG3kPtqKL.jpg",
+  "note": 4.1,
+  "avis": 17,
+  "lien": "https://www.amazon.ca/dp/B0F5S9TK7H?tag=dtlinformat0f-20",
+  "vu": "2026-08-15 17:49",
+  "mediane90": 217.65,
+  "plancher": 98.61,
+  "ventes90": 12,
+  "stock90": 85,
+  "normal": 217.65,
+  "ecart": 130.81,
+  "pct": 60,
+  "refus": null
+ },
+ {
   "asin": "B0CXZH9S9B",
   "titre": "Adjustable Aluminum & Hardwood Threshold Waterproof and Hidden Screws -Add-on Extension Available - Heavy Duty - Commercial and Residential Multiple Sizes Available (Black, Extension 36\")",
   "prix": 92.9,
@@ -4375,28 +4397,6 @@
   "normal": 172.62,
   "ecart": 117.63,
   "pct": 68,
-  "refus": null
- },
- {
-  "asin": "B0CMDK6T7N",
-  "titre": "Bali Women's Wireless, Comfort Revolution Modern Seamless, Flex-to-fit Wirefree Bra, White, X-Large",
-  "prix": 50.23,
-  "grossier": 126.97,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "416rDomOTpL.jpg",
-  "note": 4.2,
-  "avis": 400,
-  "lien": "https://www.amazon.ca/dp/B0CMDK6T7N?tag=dtlinformat0f-20",
-  "vu": "2026-08-13 12:14",
-  "mediane90": 164.67,
-  "plancher": 58.06,
-  "ventes90": 12,
-  "stock90": 61,
-  "normal": 164.67,
-  "ecart": 114.44,
-  "pct": 69,
   "refus": null
  }
 ]

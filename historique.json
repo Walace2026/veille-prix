@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B09QNMB6QZ",
+  "titre": "Carhartt Women's GD0794W Women's High Dexterity Open Cuff Glove, Blackberry Grey, Medium",
+  "prix": 25.99,
+  "grossier": 80.02,
+  "rayon": 3006902011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41OYNyPyVaL.jpg",
+  "note": 4.4,
+  "avis": 72,
+  "lien": "https://www.amazon.ca/dp/B09QNMB6QZ?tag=dtlinformat0f-20",
+  "vu": "2026-08-15 00:51",
+  "mediane90": 80.16,
+  "plancher": 59.24,
+  "ventes90": 20,
+  "stock90": 100,
+  "normal": 80.16,
+  "ecart": 54.17,
+  "pct": 68,
+  "refus": null
+ },
+ {
   "asin": "B0BX3QYGQ6",
   "titre": "Suitmeister Men's Christmas Laurel Suit - Christmas Outfit with Garland - Including Blazer, Pants and Tie - Green - Size: XXL",
   "prix": 69.99,
@@ -4375,28 +4397,6 @@
   "normal": 90.36,
   "ecart": 63.93,
   "pct": 71,
-  "refus": null
- },
- {
-  "asin": "B0DRGKMN6D",
-  "titre": "Kids Animal Blackout Curtains,Cartoon Watercolour Green Forest Cute Bear Deer Squirrel Animal Camping Windows Treatments Rod Pocket Drapes for Baby Nursery Living Room Bedroom 72x63in",
-  "prix": 22.98,
-  "grossier": 83.18,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "51aPulhP-SL.jpg",
-  "note": null,
-  "avis": null,
-  "lien": "https://www.amazon.ca/dp/B0DRGKMN6D?tag=dtlinformat0f-20",
-  "vu": "2026-08-12 16:05",
-  "mediane90": 84.86,
-  "plancher": 28.0,
-  "ventes90": 10,
-  "stock90": 100,
-  "normal": 84.86,
-  "ecart": 61.88,
-  "pct": 73,
   "refus": null
  }
 ]

@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0F62Q597F",
+  "titre": "Erosebridal 7 Pcs Letter A-Z Bed Set Twin Size for Girls Pink Bowknot Sheet Set Bed in A Bag Kawaii Love Heart Dreamy Princess Romantic Watercolor Alphabet Comforter",
+  "prix": 35.24,
+  "grossier": 97.33,
+  "rayon": 2206275011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "414ORWP933L.jpg",
+  "note": 4.3,
+  "avis": 17,
+  "lien": "https://www.amazon.ca/dp/B0F62Q597F?tag=dtlinformat0f-20",
+  "vu": "2026-08-16 19:49",
+  "mediane90": 88.5,
+  "plancher": 75.5,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 88.5,
+  "ecart": 53.26,
+  "pct": 60,
+  "refus": null
+ },
+ {
   "asin": "B0015BZKY4",
   "titre": "Scosche MA1540B 2005-Up Mazda 3 Double DIN Kit",
   "prix": 23.93,
@@ -4375,28 +4397,6 @@
   "normal": 65.86,
   "ecart": 52.36,
   "pct": 80,
-  "refus": null
- },
- {
-  "asin": "B0D31SZ6KJ",
-  "titre": "On Men's Cloudmonster 2 Sneaker, Black/Black, 14",
-  "prix": 269.47,
-  "grossier": 691.73,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31hcXl-nANL.jpg",
-  "note": 4.5,
-  "avis": 606,
-  "lien": "https://www.amazon.ca/dp/B0D31SZ6KJ?tag=dtlinformat0f-20",
-  "vu": "2026-08-14 12:07",
-  "mediane90": 687.14,
-  "plancher": 314.83,
-  "ventes90": 5,
-  "stock90": 100,
-  "normal": 687.14,
-  "ecart": 417.67,
-  "pct": 61,
   "refus": null
  }
 ]

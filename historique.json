@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0FYRN5Y4Z",
+  "titre": "Oneida Organic Shades Oatmeal Stoneware Pasta Bowl Set for 4, 34.5oz",
+  "prix": 33.24,
+  "grossier": 83.68,
+  "rayon": 2206275011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31mSJK0k0qL.jpg",
+  "note": 4.9,
+  "avis": 28,
+  "lien": "https://www.amazon.ca/dp/B0FYRN5Y4Z?tag=dtlinformat0f-20",
+  "vu": "2026-08-16 11:52",
+  "mediane90": 84.37,
+  "plancher": 71.21,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 84.37,
+  "ecart": 51.13,
+  "pct": 61,
+  "refus": null
+ },
+ {
   "asin": "B095P66T12",
   "titre": "Goodyear Wrangler TrailRunner AT All Terrain LT275/65R20 126S E Light Truck Tire",
   "prix": 605.07,
@@ -4375,28 +4397,6 @@
   "normal": 145.48,
   "ecart": 96.2,
   "pct": 66,
-  "refus": null
- },
- {
-  "asin": "B0C8R787B6",
-  "titre": "KEEN Women's Waimea H2 Toe Protecting Flip-Flops, Alloy/Black, 11",
-  "prix": 69.55,
-  "grossier": 166.17,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31K9R2eA5HL.jpg",
-  "note": 4.3,
-  "avis": 449,
-  "lien": "https://www.amazon.ca/dp/B0C8R787B6?tag=dtlinformat0f-20",
-  "vu": "2026-08-14 05:43",
-  "mediane90": 161.44,
-  "plancher": 98.87,
-  "ventes90": 22,
-  "stock90": 100,
-  "normal": 161.44,
-  "ecart": 91.89,
-  "pct": 57,
   "refus": null
  }
 ]

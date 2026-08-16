@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CKVRH5KD",
+  "titre": "Helly Hansen Kids Junior's Champ Pile Jacket, 389 Sand, 8",
+  "prix": 77.41,
+  "grossier": 171.55,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41GkTzg0byL.jpg",
+  "note": 4.2,
+  "avis": 37,
+  "lien": "https://www.amazon.ca/dp/B0CKVRH5KD?tag=dtlinformat0f-20",
+  "vu": "2026-08-16 15:02",
+  "mediane90": 158.05,
+  "plancher": 104.34,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 158.05,
+  "ecart": 80.64,
+  "pct": 51,
+  "refus": null
+ },
+ {
   "asin": "B0FDWGDH6F",
   "titre": "AUTOMET Womens 2 Piece Summer Matching Lounge Short Sets with Pockets, Navy Blue, X-Small",
   "prix": 36.44,
@@ -4375,28 +4397,6 @@
   "normal": 300.46,
   "ecart": 195.51,
   "pct": 65,
-  "refus": null
- },
- {
-  "asin": "B000I0WTY2",
-  "titre": "Honeywell 32001876-001 Solenoid Valve Kit",
-  "prix": 88.03,
-  "grossier": 258.21,
-  "rayon": 11076213011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31yO-rcKKPL.jpg",
-  "note": 4.4,
-  "avis": 80,
-  "lien": "https://www.amazon.ca/dp/B000I0WTY2?tag=dtlinformat0f-20",
-  "vu": "2026-08-14 08:30",
-  "mediane90": 243.99,
-  "plancher": 149.13,
-  "ventes90": 1,
-  "stock90": 100,
-  "normal": 243.99,
-  "ecart": 155.96,
-  "pct": 64,
   "refus": null
  }
 ]

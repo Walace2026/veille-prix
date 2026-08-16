@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0F48L1D8B",
+  "titre": "AUTOMET Womens Rompers Jumpsuits Overalls Summer Beach Cruise Outfits 2026, Sage, Large",
+  "prix": 36.44,
+  "grossier": 95.33,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31fNEFEvv0L.jpg",
+  "note": 4.3,
+  "avis": 3534,
+  "lien": "https://www.amazon.ca/dp/B0F48L1D8B?tag=dtlinformat0f-20",
+  "vu": "2026-08-16 15:45",
+  "mediane90": 91.78,
+  "plancher": 56.89,
+  "ventes90": 18,
+  "stock90": 100,
+  "normal": 91.78,
+  "ecart": 55.34,
+  "pct": 60,
+  "refus": null
+ },
+ {
   "asin": "B0CKVRH5KD",
   "titre": "Helly Hansen Kids Junior's Champ Pile Jacket, 389 Sand, 8",
   "prix": 77.41,
@@ -4375,28 +4397,6 @@
   "normal": 79.99,
   "ecart": 55.0,
   "pct": 69,
-  "refus": null
- },
- {
-  "asin": "B0BZDT34H9",
-  "titre": "ASICS Men's EX89 Shoes, 5, White/Spice Latte",
-  "prix": 104.95,
-  "grossier": 299.92,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31nzdcExeYL.jpg",
-  "note": 4.6,
-  "avis": 185,
-  "lien": "https://www.amazon.ca/dp/B0BZDT34H9?tag=dtlinformat0f-20",
-  "vu": "2026-08-14 08:30",
-  "mediane90": 300.46,
-  "plancher": 298.76,
-  "ventes90": 4,
-  "stock90": 100,
-  "normal": 300.46,
-  "ecart": 195.51,
-  "pct": 65,
   "refus": null
  }
 ]

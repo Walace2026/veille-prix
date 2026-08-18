@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0DJYV4169",
+  "titre": "Columbia Toddler Unisex Tiny Bear Jacket, Black, 4T",
+  "prix": 52.85,
+  "grossier": 151.87,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41W8xANvFSL.jpg",
+  "note": 4.2,
+  "avis": 91,
+  "lien": "https://www.amazon.ca/dp/B0DJYV4169?tag=dtlinformat0f-20",
+  "vu": "2026-08-18 07:01",
+  "mediane90": 152.96,
+  "plancher": 59.99,
+  "ventes90": 7,
+  "stock90": 100,
+  "normal": 152.96,
+  "ecart": 100.11,
+  "pct": 65,
+  "refus": null
+ },
+ {
   "asin": "B0FKGYMNDP",
   "titre": "GAMVIRE 2000W Peak 3000W Electric Bike for Adults, 52V 32Ah, 40MPH Max 100+ Miles Long Range, 26\" Fat Tire Off Road Snow Mountain Ebike, Hydraulic Disc Brake, Pedal Assist E-Bicycle, UL2849 (Blue)",
   "prix": 204.54,
@@ -4375,28 +4397,6 @@
   "normal": 113.65,
   "ecart": 78.41,
   "pct": 69,
-  "refus": null
- },
- {
-  "asin": "B0F9K6VQTJ",
-  "titre": "AUTOMET Womens Rompers Jumpsuits Overalls Summer Beach Cruise Outfits 2026, White, Medium",
-  "prix": 36.44,
-  "grossier": 97.83,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31uXQAoyIaL.jpg",
-  "note": 4.3,
-  "avis": 3542,
-  "lien": "https://www.amazon.ca/dp/B0F9K6VQTJ?tag=dtlinformat0f-20",
-  "vu": "2026-08-16 07:50",
-  "mediane90": 93.61,
-  "plancher": 61.77,
-  "ventes90": 11,
-  "stock90": 56,
-  "normal": 93.61,
-  "ecart": 57.17,
-  "pct": 61,
   "refus": null
  }
 ]

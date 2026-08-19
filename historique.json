@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B001P80H36",
+  "titre": "Dramm 15052 Colorstorm Premium 3-Arm Whirling Sprinkler with Heavy-Duty Metal Wheeled Base, Orange",
+  "prix": 19.99,
+  "grossier": 74.43,
+  "rayon": 6205499011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41Q0BKJYifL.jpg",
+  "note": 4.2,
+  "avis": 429,
+  "lien": "https://www.amazon.ca/dp/B001P80H36?tag=dtlinformat0f-20",
+  "vu": "2026-08-19 07:58",
+  "mediane90": 76.15,
+  "plancher": 72.35,
+  "ventes90": 3,
+  "stock90": 100,
+  "normal": 76.15,
+  "ecart": 56.16,
+  "pct": 74,
+  "refus": null
+ },
+ {
   "asin": "B0CZRVN3WB",
   "titre": "Fox and Dragon Comforter Set King Size,3D Flaming Ice Collision Bedding Set,Western Magical Style Animals Down Comforter for Kids Boys Adult Men Room Decor,Galaxy Universe Bedspread Quilt 3Pcs",
   "prix": 21.63,
@@ -4375,28 +4397,6 @@
   "normal": 84.72,
   "ecart": 59.99,
   "pct": 71,
-  "refus": null
- },
- {
-  "asin": "B0F62THXFV",
-  "titre": "Erosebridal 7 Pcs Initial Letter A-Z Sheet Set Bed in A Bag Full Size for Girls Pink M Alphabet Bed Set Romantic Bow Comforter Soft Cute Love Hearts Aesthetic Girly Fairy",
-  "prix": 35.24,
-  "grossier": 104.81,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41V7cfPUlPL.jpg",
-  "note": 4.3,
-  "avis": 17,
-  "lien": "https://www.amazon.ca/dp/B0F62THXFV?tag=dtlinformat0f-20",
-  "vu": "2026-08-17 09:58",
-  "mediane90": 92.29,
-  "plancher": 79.47,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 92.29,
-  "ecart": 57.05,
-  "pct": 62,
   "refus": null
  }
 ]

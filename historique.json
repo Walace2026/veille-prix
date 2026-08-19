@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0BL8JJ1ZB",
+  "titre": "PUMA Women's Carina Street Sneaker, Black Black-Rose Gold White, 9.5",
+  "prix": 44.98,
+  "grossier": 151.94,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31diYt7gYmL.jpg",
+  "note": 4.4,
+  "avis": 913,
+  "lien": "https://www.amazon.ca/dp/B0BL8JJ1ZB?tag=dtlinformat0f-20",
+  "vu": "2026-08-19 17:57",
+  "mediane90": 139.79,
+  "plancher": 53.98,
+  "ventes90": 13,
+  "stock90": 100,
+  "normal": 139.79,
+  "ecart": 94.81,
+  "pct": 68,
+  "refus": null
+ },
+ {
   "asin": "B0F85Y2HMS",
   "titre": "Mountain Hardwear Men’s Stretch Ozonic Pants for Hiking, Backpacking, Camping and Outdoor Activities, Grey, XX-Large Short",
   "prix": 188.39,
@@ -4375,28 +4397,6 @@
   "normal": 135.72,
   "ecart": 82.91,
   "pct": 61,
-  "refus": null
- },
- {
-  "asin": "B0DJVN7HZG",
-  "titre": "Feelyou Marlin Swordfish Comforter Set with Sheets Fishing and Hunting 7 Piece Bedding Set Queen Size for Kids Boys Girls Fish Bed in a Bag Fishing Bed Set",
-  "prix": 54.03,
-  "grossier": 133.87,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "51qL3ihw63L.jpg",
-  "note": 4.6,
-  "avis": 44,
-  "lien": "https://www.amazon.ca/dp/B0DJVN7HZG?tag=dtlinformat0f-20",
-  "vu": "2026-08-17 17:02",
-  "mediane90": 134.11,
-  "plancher": 119.49,
-  "ventes90": 7,
-  "stock90": 100,
-  "normal": 134.11,
-  "ecart": 80.08,
-  "pct": 60,
   "refus": null
  }
 ]

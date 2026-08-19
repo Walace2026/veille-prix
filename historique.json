@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CLS4H98G",
+  "titre": "CLIM ART All-Weather Car Floor Mats Compatible with Dodge Durango 2011-2026, Custom-Fit Heavy-Duty Floor Liners for Cars & SUVs, Car Accessories for Men & Women, Black - FL011611224",
+  "prix": 138.0,
+  "grossier": 305.63,
+  "rayon": 6948389011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "51Vfk2BPTAL.jpg",
+  "note": null,
+  "avis": null,
+  "lien": "https://www.amazon.ca/dp/B0CLS4H98G?tag=dtlinformat0f-20",
+  "vu": "2026-08-19 13:02",
+  "mediane90": 296.75,
+  "plancher": 247.94,
+  "ventes90": 4,
+  "stock90": 59,
+  "normal": 296.75,
+  "ecart": 158.75,
+  "pct": 53,
+  "refus": null
+ },
+ {
   "asin": "B0GCMV9WLT",
   "titre": "Zihanhome Ottoman with Storage, PU Leather Storage Ottoman Bench",
   "prix": 234.99,
@@ -4375,28 +4397,6 @@
   "normal": 81.97,
   "ecart": 52.57,
   "pct": 64,
-  "refus": null
- },
- {
-  "asin": "B0DD1LVTJ9",
-  "titre": "Team Fan Apparel NFL Adult Unisex Retro Script Ultra Soft Fleece Hooded Sweatshirt, Officially Licensed Football Performance, Forest Green, 3X-Large",
-  "prix": 99.33,
-  "grossier": 257.89,
-  "rayon": 2242989011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41MLDssmlYL.jpg",
-  "note": 4.7,
-  "avis": 504,
-  "lien": "https://www.amazon.ca/dp/B0DD1LVTJ9?tag=dtlinformat0f-20",
-  "vu": "2026-08-17 13:04",
-  "mediane90": 692.08,
-  "plancher": 247.29,
-  "ventes90": 1,
-  "stock90": 100,
-  "normal": 692.08,
-  "ecart": 592.75,
-  "pct": 86,
   "refus": null
  }
 ]

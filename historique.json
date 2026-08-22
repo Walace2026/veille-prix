@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0C83W7RHT",
+  "titre": "My Medic - TFAK - Ifak Trauma Kit with Tourniquet - HSA/FSA Approved - Over 35 Essential Life Saving First Aid Items for Car or Travel - Red",
+  "prix": 162.11,
+  "grossier": 450.0,
+  "rayon": 2242989011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "411Lw16mU9L.jpg",
+  "note": 4.7,
+  "avis": 42,
+  "lien": "https://www.amazon.ca/dp/B0C83W7RHT?tag=dtlinformat0f-20",
+  "vu": "2026-08-22 05:55",
+  "mediane90": 452.11,
+  "plancher": 306.04,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 452.11,
+  "ecart": 290.0,
+  "pct": 64,
+  "refus": null
+ },
+ {
   "asin": "B002RWH7CI",
   "titre": "Mens Sailor Costume Large UK 42/44 for Sea Navy Fancy Dress",
   "prix": 40.74,
@@ -4375,28 +4397,6 @@
   "normal": 138.34,
   "ecart": 85.84,
   "pct": 62,
-  "refus": null
- },
- {
-  "asin": "B0CN6GNZ8Z",
-  "titre": "HZOHNAGO Bee Curtain Cute Bees Yellow Flower Honey Blackout Print Rod Pocket Window Drapes for Bedroom Living Room 63x72in",
-  "prix": 25.98,
-  "grossier": 89.18,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41+4d1Wdj2L.jpg",
-  "note": 4.2,
-  "avis": 14,
-  "lien": "https://www.amazon.ca/dp/B0CN6GNZ8Z?tag=dtlinformat0f-20",
-  "vu": "2026-08-20 05:55",
-  "mediane90": 90.04,
-  "plancher": 80.73,
-  "ventes90": 1,
-  "stock90": 100,
-  "normal": 90.04,
-  "ecart": 64.06,
-  "pct": 71,
   "refus": null
  }
 ]

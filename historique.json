@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B07VYMKV76",
+  "titre": "Hush Puppies Men's Loafers, Black, 13",
+  "prix": 69.39,
+  "grossier": 137.8,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31YIgmjub9L.jpg",
+  "note": 4.1,
+  "avis": 549,
+  "lien": "https://www.amazon.ca/dp/B07VYMKV76?tag=dtlinformat0f-20",
+  "vu": "2026-08-22 13:53",
+  "mediane90": 125.39,
+  "plancher": 112.45,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 125.39,
+  "ecart": 56.0,
+  "pct": 45,
+  "refus": null
+ },
+ {
   "asin": "B0DNG818GS",
   "titre": "Ryka Women's Vista Slip on",
   "prix": 76.32,
@@ -4375,28 +4397,6 @@
   "normal": 93.58,
   "ecart": 58.6,
   "pct": 63,
-  "refus": null
- },
- {
-  "asin": "B0GSZZJZC9",
-  "titre": "Anoumcy Leopard Pants Women Joggers Sweatpants Casual Cheetah Print Lounge Barrel Pants Trousers with Pockets, Floral -Pink Grey, Small",
-  "prix": 34.98,
-  "grossier": 88.43,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41Z0SdkN0tL.jpg",
-  "note": 4.0,
-  "avis": 352,
-  "lien": "https://www.amazon.ca/dp/B0GSZZJZC9?tag=dtlinformat0f-20",
-  "vu": "2026-08-20 08:01",
-  "mediane90": 92.96,
-  "plancher": 84.12,
-  "ventes90": 25,
-  "stock90": 100,
-  "normal": 92.96,
-  "ecart": 57.98,
-  "pct": 62,
   "refus": null
  }
 ]

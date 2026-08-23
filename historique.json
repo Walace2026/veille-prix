@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B08XJZ9HZV",
+  "titre": "Marc Jacobs Daisy Eau so Intense Eau de Parfum 1 fl oz",
+  "prix": 103.26,
+  "grossier": 269.12,
+  "rayon": 6205124011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31--jxrlEmL.jpg",
+  "note": 4.7,
+  "avis": 232,
+  "lien": "https://www.amazon.ca/dp/B08XJZ9HZV?tag=dtlinformat0f-20",
+  "vu": "2026-08-23 11:53",
+  "mediane90": 270.58,
+  "plancher": 148.76,
+  "ventes90": 0,
+  "stock90": 71,
+  "normal": 270.58,
+  "ecart": 167.32,
+  "pct": 62,
+  "refus": null
+ },
+ {
   "asin": "B0GJYSCQV5",
   "titre": "Narwal Flow 2 Accessories Pack",
   "prix": 69.99,
@@ -4375,28 +4397,6 @@
   "normal": 159.99,
   "ecart": 102.76,
   "pct": 64,
-  "refus": null
- },
- {
-  "asin": "B0DR3NL15F",
-  "titre": "Crocs Unisex-Adult Classic Marbled Tie-dye Clog, Grey Swirl, 11 Women/9 Men",
-  "prix": 69.43,
-  "grossier": 188.37,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31O0QMx6AoL.jpg",
-  "note": 4.8,
-  "avis": 252,
-  "lien": "https://www.amazon.ca/dp/B0DR3NL15F?tag=dtlinformat0f-20",
-  "vu": "2026-08-21 12:04",
-  "mediane90": 142.36,
-  "plancher": 116.21,
-  "ventes90": 1,
-  "stock90": 50,
-  "normal": 142.36,
-  "ecart": 72.93,
-  "pct": 51,
   "refus": null
  }
 ]

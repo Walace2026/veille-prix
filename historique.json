@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0GQ54WKGG",
+  "titre": "HI-TEC Blaze SR Non Slip Mens Clogs, Shoes for Men Food Service or Hospital Work Slip Resistant Footwear, Black, 11",
+  "prix": 70.72,
+  "grossier": 189.89,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31Y9uAzSC8L.jpg",
+  "note": 4.1,
+  "avis": 37,
+  "lien": "https://www.amazon.ca/dp/B0GQ54WKGG?tag=dtlinformat0f-20",
+  "vu": "2026-08-25 19:56",
+  "mediane90": 190.89,
+  "plancher": 187.6,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 190.89,
+  "ecart": 120.17,
+  "pct": 63,
+  "refus": null
+ },
+ {
   "asin": "B0BHPVMTCZ",
   "titre": "adidas Men's Grand Court 2.0 Shoe",
   "prix": 85.89,
@@ -4375,28 +4397,6 @@
   "normal": 270.58,
   "ecart": 167.32,
   "pct": 62,
-  "refus": null
- },
- {
-  "asin": "B0GJYSCQV5",
-  "titre": "Narwal Flow 2 Accessories Pack",
-  "prix": 69.99,
-  "grossier": 269.89,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41YQpv7QQdL.jpg",
-  "note": 1.0,
-  "avis": 1,
-  "lien": "https://www.amazon.ca/dp/B0GJYSCQV5?tag=dtlinformat0f-20",
-  "vu": "2026-08-23 10:56",
-  "mediane90": 269.99,
-  "plancher": 269.99,
-  "ventes90": 10,
-  "stock90": 100,
-  "normal": 269.99,
-  "ecart": 200.0,
-  "pct": 74,
   "refus": null
  }
 ]

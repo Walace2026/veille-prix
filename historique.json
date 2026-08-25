@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D4851XXW",
+  "titre": "Franco Sarto Womens Giovanna Pointed Toe Pumps, Pewter Metallic, 11",
+  "prix": 73.24,
+  "grossier": 181.15,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31K35WHXVwL.jpg",
+  "note": 4.4,
+  "avis": 20,
+  "lien": "https://www.amazon.ca/dp/B0D4851XXW?tag=dtlinformat0f-20",
+  "vu": "2026-08-25 17:58",
+  "mediane90": 180.53,
+  "plancher": 122.57,
+  "ventes90": 0,
+  "stock90": 52,
+  "normal": 180.53,
+  "ecart": 107.29,
+  "pct": 59,
+  "refus": null
+ },
+ {
   "asin": "B0GVXNBP8S",
   "titre": "Electric Bike for Adults, 52V 32AH 6000W Peak Dual Motor E-Bike, 26\" Fat Tire Hydraulic Disc Brakes Fast Electric Bicycle (Black/Silver with Handlebar Riser)",
   "prix": 390.54,
@@ -4375,28 +4397,6 @@
   "normal": 117.79,
   "ecart": 78.5,
   "pct": 67,
-  "refus": null
- },
- {
-  "asin": "B08R9CYQF9",
-  "titre": "Mssoomm Linear Rail Shaft Guide and Linear Bearing Slide Block, SBR12-39.37 inch / 1000mm Rail +2Pcs SBR12UU Blocks for CNC Router Machine and 3D Printer",
-  "prix": 24.44,
-  "grossier": 100.79,
-  "rayon": 11076213011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31pZ-jKBepL.jpg",
-  "note": 4.0,
-  "avis": 1,
-  "lien": "https://www.amazon.ca/dp/B08R9CYQF9?tag=dtlinformat0f-20",
-  "vu": "2026-08-23 10:56",
-  "mediane90": 101.08,
-  "plancher": 81.74,
-  "ventes90": 3,
-  "stock90": 100,
-  "normal": 101.08,
-  "ecart": 76.64,
-  "pct": 76,
   "refus": null
  }
 ]

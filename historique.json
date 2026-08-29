@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D3XJB27P",
+  "titre": "VEVOR 3 in 1 Plyometric Jump Box, 30/24/20 Inch Wooden Plyo Box, Platform & Jumping Agility Box, Anti-Slip Fitness Exercise Step Up Box for Home Gym Training, Conditioning Strength Training, Black",
+  "prix": 129.9,
+  "grossier": 353.14,
+  "rayon": 2242989011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "414y5mSR7iL.jpg",
+  "note": 4.5,
+  "avis": 22,
+  "lien": "https://www.amazon.ca/dp/B0D3XJB27P?tag=dtlinformat0f-20",
+  "vu": "2026-08-29 09:12",
+  "mediane90": 353.53,
+  "plancher": 286.5,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 353.53,
+  "ecart": 223.63,
+  "pct": 63,
+  "refus": null
+ },
+ {
   "asin": "B0068W94K6",
   "titre": "Baldwin Reserve 9BR3530-019 Traditional Ellipse Privacy Knob in Polished Brass",
   "prix": 114.69,
@@ -4375,28 +4397,6 @@
   "normal": 139.99,
   "ecart": 93.24,
   "pct": 67,
-  "refus": null
- },
- {
-  "asin": "B0GGQJKJBZ",
-  "titre": "LiTHELi 20V Cordless Impact Wrench 1/2\" Hog Ring, Max 295ft-lbs & 3000IPM, 5 Torque Settings, Bare Tool with 5 Sockets & Case for Car Tire, Home Repair & DIY (Battery & Charger Not Included)",
-  "prix": 19.99,
-  "grossier": 107.62,
-  "rayon": 3006902011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41Lsx3k2A+L.jpg",
-  "note": null,
-  "avis": null,
-  "lien": "https://www.amazon.ca/dp/B0GGQJKJBZ?tag=dtlinformat0f-20",
-  "vu": "2026-08-25 15:10",
-  "mediane90": 108.26,
-  "plancher": 79.99,
-  "ventes90": 5,
-  "stock90": 100,
-  "normal": 108.26,
-  "ecart": 88.27,
-  "pct": 82,
   "refus": null
  }
 ]

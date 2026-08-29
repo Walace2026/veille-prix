@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D1QSNY9Q",
+  "titre": "VEVOR 6KG Propane Melting Furnace Kit, Large Capacity Foundry Home Kilns, Blacksmithing Forge with Crucible & Tongs Kiln, Stainless Steel, for Metal Scrap Recycle, Gold Copper Silver Casting",
+  "prix": 143.9,
+  "grossier": 360.5,
+  "rayon": 11076213011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41Rr1LDfZ1L.jpg",
+  "note": 4.2,
+  "avis": 66,
+  "lien": "https://www.amazon.ca/dp/B0D1QSNY9Q?tag=dtlinformat0f-20",
+  "vu": "2026-08-29 01:12",
+  "mediane90": 362.01,
+  "plancher": 248.41,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 362.01,
+  "ecart": 218.11,
+  "pct": 60,
+  "refus": null
+ },
+ {
   "asin": "B0D9HVHZVW",
   "titre": "CAP 20 LB Cast Iron Hex Dumbbell, Free Weight, Single, Black",
   "prix": 54.18,
@@ -4375,28 +4397,6 @@
   "normal": 216.21,
   "ecart": 171.15,
   "pct": 79,
-  "refus": null
- },
- {
-  "asin": "B0D9P9BCDQ",
-  "titre": "Nike Air Zoom G.t. Cut Academy Mens Sneaker, LT Smoke Grey/Photon DUST-DK Grey, 10 US",
-  "prix": 120.0,
-  "grossier": 294.03,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "3101jnT7jWL.jpg",
-  "note": 4.4,
-  "avis": 12,
-  "lien": "https://www.amazon.ca/dp/B0D9P9BCDQ?tag=dtlinformat0f-20",
-  "vu": "2026-08-25 04:22",
-  "mediane90": 274.1,
-  "plancher": 183.62,
-  "ventes90": 0,
-  "stock90": 67,
-  "normal": 274.1,
-  "ecart": 154.1,
-  "pct": 56,
   "refus": null
  }
 ]

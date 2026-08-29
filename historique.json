@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B00L24SDU2",
+  "titre": "PELTOR Cap Mount Earmuffs",
+  "prix": 32.9,
+  "grossier": 181.71,
+  "rayon": 3006902011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31To8UdBqEL.jpg",
+  "note": 4.6,
+  "avis": 15,
+  "lien": "https://www.amazon.ca/dp/B00L24SDU2?tag=dtlinformat0f-20",
+  "vu": "2026-08-29 07:14",
+  "mediane90": 197.74,
+  "plancher": 102.69,
+  "ventes90": 2,
+  "stock90": 100,
+  "normal": 197.74,
+  "ecart": 164.84,
+  "pct": 83,
+  "refus": null
+ },
+ {
   "asin": "B0CG2GGSGD",
   "titre": "Heavy Duty Overbust Corset Waist Trainer Double Steel Boned Shaper Womens White Corset, White, 3X-Small",
   "prix": 33.98,
@@ -4375,28 +4397,6 @@
   "normal": 124.43,
   "ecart": 77.68,
   "pct": 62,
-  "refus": null
- },
- {
-  "asin": "B0FWCG9S9K",
-  "titre": "6000W Peak Dual Motor Electric Bike for Adults, 52V 32AH Battery E-Bicycle, Max 45MPH & 100Miles, Front Suspension, Hydraulic Brake, 26\" Fat Tire E-Bikes for Men Women",
-  "prix": 304.54,
-  "grossier": 1620.94,
-  "rayon": 2242989011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "517P+uhgk9L.jpg",
-  "note": 3.9,
-  "avis": 10,
-  "lien": "https://www.amazon.ca/dp/B0FWCG9S9K?tag=dtlinformat0f-20",
-  "vu": "2026-08-25 10:29",
-  "mediane90": 1699.0,
-  "plancher": 503.54,
-  "ventes90": 54,
-  "stock90": 91,
-  "normal": 1699.0,
-  "ecart": 1394.46,
-  "pct": 82,
   "refus": null
  }
 ]

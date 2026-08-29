@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D9HVHZVW",
+  "titre": "CAP 20 LB Cast Iron Hex Dumbbell, Free Weight, Single, Black",
+  "prix": 54.18,
+  "grossier": 155.15,
+  "rayon": 2242989011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31yp7j0aJ5L.jpg",
+  "note": 4.6,
+  "avis": 25,
+  "lien": "https://www.amazon.ca/dp/B0D9HVHZVW?tag=dtlinformat0f-20",
+  "vu": "2026-08-29 00:12",
+  "mediane90": 157.72,
+  "plancher": 82.63,
+  "ventes90": 0,
+  "stock90": 89,
+  "normal": 157.72,
+  "ecart": 103.54,
+  "pct": 66,
+  "refus": null
+ },
+ {
   "asin": "B002M7Z5CC",
   "titre": "Fellowes Powershred 325Ci 100% Jam Proof 22-Sheet Cross-Cut Commercial Grade Paper Shredder (3831001)",
   "prix": 913.64,
@@ -4375,28 +4397,6 @@
   "normal": 274.1,
   "ecart": 154.1,
   "pct": 56,
-  "refus": null
- },
- {
-  "asin": "B0B5P954BX",
-  "titre": "HUDSON Women's The Petite, Noir Coated, 28",
-  "prix": 96.7,
-  "grossier": 225.63,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31JMn3X+7WL.jpg",
-  "note": 4.1,
-  "avis": 50,
-  "lien": "https://www.amazon.ca/dp/B0B5P954BX?tag=dtlinformat0f-20",
-  "vu": "2026-08-25 04:22",
-  "mediane90": 234.27,
-  "plancher": 110.52,
-  "ventes90": 1,
-  "stock90": 100,
-  "normal": 234.27,
-  "ecart": 137.57,
-  "pct": 59,
   "refus": null
  }
 ]

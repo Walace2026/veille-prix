@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D5BWHT4Y",
+  "titre": "Native Shoes Jefferson, Bone White/Bone White, 8W10",
+  "prix": 56.7,
+  "grossier": 142.14,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31+45TTt5pL.jpg",
+  "note": 4.4,
+  "avis": 701,
+  "lien": "https://www.amazon.ca/dp/B0D5BWHT4Y?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 13:12",
+  "mediane90": 144.48,
+  "plancher": 67.58,
+  "ventes90": 1,
+  "stock90": 86,
+  "normal": 144.48,
+  "ecart": 87.78,
+  "pct": 61,
+  "refus": null
+ },
+ {
   "asin": "B0BKZP5D56",
   "titre": "Naot Women's Arataki Flat Sandal, Grey Marble, 8-8.5",
   "prix": 159.68,
@@ -4375,28 +4397,6 @@
   "normal": 201.6,
   "ecart": 151.61,
   "pct": 75,
-  "refus": null
- },
- {
-  "asin": "B0C9S85DHQ",
-  "titre": "Wacoal Women's Perfect Primer Contour Bra, Mineral Red, 32D",
-  "prix": 58.65,
-  "grossier": 190.7,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41OM0rLkoIL.jpg",
-  "note": 4.4,
-  "avis": 606,
-  "lien": "https://www.amazon.ca/dp/B0C9S85DHQ?tag=dtlinformat0f-20",
-  "vu": "2026-08-27 21:02",
-  "mediane90": 202.44,
-  "plancher": 77.97,
-  "ventes90": 13,
-  "stock90": 100,
-  "normal": 202.44,
-  "ecart": 143.79,
-  "pct": 71,
   "refus": null
  }
 ]

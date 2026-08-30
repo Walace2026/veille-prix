@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CBCSDMVM",
+  "titre": "Cole Haan Women's OriginalGrand Peyton Flatform Heeled Sandal, Black/Black, 7.5-B US",
+  "prix": 37.99,
+  "grossier": 101.66,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41qn-buId7L.jpg",
+  "note": 3.9,
+  "avis": 153,
+  "lien": "https://www.amazon.ca/dp/B0CBCSDMVM?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 07:12",
+  "mediane90": 120.77,
+  "plancher": 51.56,
+  "ventes90": 16,
+  "stock90": 100,
+  "normal": 120.77,
+  "ecart": 82.78,
+  "pct": 69,
+  "refus": null
+ },
+ {
   "asin": "B07F2R8JY6",
   "titre": "Dream On Me Chelsea 5-In-1 Convertible Crib In Strom Grey, 4 Mattress Height Positions, Non Toxic Finish, JPMA Certified, Made Of Sustainable And Sturdy Pinewood",
   "prix": 119.0,
@@ -4375,28 +4397,6 @@
   "normal": 171.2,
   "ecart": 97.36,
   "pct": 57,
-  "refus": null
- },
- {
-  "asin": "B00LNKWYQO",
-  "titre": "Set of 4 NEW Chrome Plated Steel 16 Inch Beauty Trim Rings with Metal Clip Retention System - Part #: 1516C",
-  "prix": 94.62,
-  "grossier": 233.22,
-  "rayon": 6948389011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41aptoziNxL.jpg",
-  "note": 4.0,
-  "avis": 47,
-  "lien": "https://www.amazon.ca/dp/B00LNKWYQO?tag=dtlinformat0f-20",
-  "vu": "2026-08-27 21:02",
-  "mediane90": 191.84,
-  "plancher": 122.68,
-  "ventes90": 2,
-  "stock90": 100,
-  "normal": 191.84,
-  "ecart": 97.22,
-  "pct": 51,
   "refus": null
  }
 ]

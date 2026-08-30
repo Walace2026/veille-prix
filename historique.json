@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0H11HXY8L",
+  "titre": "Askyes Womens Casual Lightweight Cardigan Long Sleeve Open Front with Pockets, Black, XX-Large",
+  "prix": 32.98,
+  "grossier": 122.92,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41o4EP+Nq5L.jpg",
+  "note": 4.7,
+  "avis": 11,
+  "lien": "https://www.amazon.ca/dp/B0H11HXY8L?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 08:12",
+  "mediane90": 123.02,
+  "plancher": 123.02,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 123.02,
+  "ecart": 90.04,
+  "pct": 73,
+  "refus": null
+ },
+ {
   "asin": "B0CBCSDMVM",
   "titre": "Cole Haan Women's OriginalGrand Peyton Flatform Heeled Sandal, Black/Black, 7.5-B US",
   "prix": 37.99,
@@ -4375,28 +4397,6 @@
   "normal": 153.8,
   "ecart": 100.95,
   "pct": 66,
-  "refus": null
- },
- {
-  "asin": "B0CZ9T5G5T",
-  "titre": "Stacy Adams Men's Scottie Lace Up Oxford, Black Patent, 7.5",
-  "prix": 73.84,
-  "grossier": 180.32,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31vBGRmlJiL.jpg",
-  "note": 4.8,
-  "avis": 26,
-  "lien": "https://www.amazon.ca/dp/B0CZ9T5G5T?tag=dtlinformat0f-20",
-  "vu": "2026-08-27 21:02",
-  "mediane90": 171.2,
-  "plancher": 89.33,
-  "ventes90": 2,
-  "stock90": 100,
-  "normal": 171.2,
-  "ecart": 97.36,
-  "pct": 57,
   "refus": null
  }
 ]

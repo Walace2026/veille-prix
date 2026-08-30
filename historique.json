@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B004A0UPTW",
+  "titre": "TFA - Dostmann No. 30.1042 Digital Freezer - Fridge - Thermometer Range T in: -30.+50°C/-22.+122°F",
+  "prix": 30.87,
+  "grossier": 103.71,
+  "rayon": 2206275011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "412jMgk0raL.jpg",
+  "note": 4.5,
+  "avis": 1120,
+  "lien": "https://www.amazon.ca/dp/B004A0UPTW?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 02:12",
+  "mediane90": 102.79,
+  "plancher": 90.51,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 102.79,
+  "ecart": 71.92,
+  "pct": 70,
+  "refus": null
+ },
+ {
   "asin": "B0FJB9JZRQ",
   "titre": "Cougar Kids Frances_T Toddler Boots, Navy/Blue, Size 10T",
   "prix": 28.48,
@@ -4375,28 +4397,6 @@
   "normal": 83.3,
   "ecart": 78.31,
   "pct": 94,
-  "refus": null
- },
- {
-  "asin": "B0FMJXXXJR",
-  "titre": "Under Desk Elliptical Machine, Electric Elliptical Leg Exercise, Quiet Leg Exerciser While Sitting for Seniors, Mini Portable Leg Exercise Machine with Remote, Manual & Auto Mode",
-  "prix": 39.99,
-  "grossier": 117.99,
-  "rayon": 2242989011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41MDRXL9NFL.jpg",
-  "note": 4.4,
-  "avis": 119,
-  "lien": "https://www.amazon.ca/dp/B0FMJXXXJR?tag=dtlinformat0f-20",
-  "vu": "2026-08-27 21:02",
-  "mediane90": 117.82,
-  "plancher": 76.5,
-  "ventes90": 50,
-  "stock90": 100,
-  "normal": 117.82,
-  "ecart": 77.83,
-  "pct": 66,
   "refus": null
  }
 ]

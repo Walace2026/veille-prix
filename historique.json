@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B08VVDP9FR",
+  "titre": "Seville Classics UltraSlimline Indoor Bladeless Oscillating Tower Fan Quiet Cooling LED Display Space-Saving for Home w/Remote and 7.5H Timer, Black, 40\" 5-speed (115 degrees)",
+  "prix": 68.19,
+  "grossier": 181.76,
+  "rayon": 2206275011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31XizHWmOZL.jpg",
+  "note": 4.2,
+  "avis": 161,
+  "lien": "https://www.amazon.ca/dp/B08VVDP9FR?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 11:12",
+  "mediane90": 189.0,
+  "plancher": 97.06,
+  "ventes90": 18,
+  "stock90": 100,
+  "normal": 189.0,
+  "ecart": 120.81,
+  "pct": 64,
+  "refus": null
+ },
+ {
   "asin": "B07731GPSY",
   "titre": "Klimoto Radiator with 2 3/16\" Thick 2 Row | Compatible with Ford E-150 E-250 E-350 E-450 E-550 Series E 5.4L 7.3 V8 6.8 V10 | Compatible with FO3010285 CU2977 5C248005AE 5C248005AE 9C2Z8005B",
   "prix": 52.41,
@@ -4375,28 +4397,6 @@
   "normal": 193.62,
   "ecart": 132.24,
   "pct": 68,
-  "refus": null
- },
- {
-  "asin": "B0BFBLZW25",
-  "titre": "hanky panky Unlined Lace Cami (Prints), Disco Diva, Small",
-  "prix": 42.83,
-  "grossier": 162.28,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "51GvR3uP0mL.jpg",
-  "note": 4.5,
-  "avis": 180,
-  "lien": "https://www.amazon.ca/dp/B0BFBLZW25?tag=dtlinformat0f-20",
-  "vu": "2026-08-27 21:02",
-  "mediane90": 173.69,
-  "plancher": 168.29,
-  "ventes90": 3,
-  "stock90": 66,
-  "normal": 173.69,
-  "ecart": 130.86,
-  "pct": 75,
   "refus": null
  }
 ]

@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B07YN4B91S",
+  "titre": "Kotomoda Sphynx Cat's Hoodie InRed Naked Cat Hairless Cat Clothes (S)",
+  "prix": 33.6,
+  "grossier": 110.12,
+  "rayon": 6205514011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41sGGcz7yaL.jpg",
+  "note": 4.4,
+  "avis": 100,
+  "lien": "https://www.amazon.ca/dp/B07YN4B91S?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 23:12",
+  "mediane90": 106.12,
+  "plancher": 55.0,
+  "ventes90": 1,
+  "stock90": 60,
+  "normal": 106.12,
+  "ecart": 72.52,
+  "pct": 68,
+  "refus": null
+ },
+ {
   "asin": "B0F643MYJ3",
   "titre": "ASICS Women's NOVABLAST 5 Running Shoes,10,Bluebell/Lilac HINT",
   "prix": 129.95,
@@ -4375,28 +4397,6 @@
   "normal": 574.28,
   "ecart": 424.29,
   "pct": 74,
-  "refus": null
- },
- {
-  "asin": "B0BY3N237H",
-  "titre": "ASICS Men's Gel-NYC Shoes,14,Graphite Grey/Black",
-  "prix": 179.95,
-  "grossier": 600.94,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31OHHtQdFiL.jpg",
-  "note": 5.0,
-  "avis": 15,
-  "lien": "https://www.amazon.ca/dp/B0BY3N237H?tag=dtlinformat0f-20",
-  "vu": "2026-08-28 17:53",
-  "mediane90": 579.21,
-  "plancher": 576.42,
-  "ventes90": 12,
-  "stock90": 68,
-  "normal": 579.21,
-  "ecart": 399.26,
-  "pct": 69,
   "refus": null
  }
 ]

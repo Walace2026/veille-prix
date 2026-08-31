@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D6W3MN15",
+  "titre": "Cuctos Women Neutral Oxford Shoes Lace-up Handmade Derby Faux Leather Flats Solid Ladies Shoes with Tabi Split Toe, Brown, 8",
+  "prix": 30.71,
+  "grossier": 95.99,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31ayMOE-cqL.jpg",
+  "note": 4.4,
+  "avis": 17,
+  "lien": "https://www.amazon.ca/dp/B0D6W3MN15?tag=dtlinformat0f-20",
+  "vu": "2026-08-30 21:12",
+  "mediane90": 93.69,
+  "plancher": 92.6,
+  "ventes90": 1,
+  "stock90": 100,
+  "normal": 93.69,
+  "ecart": 62.98,
+  "pct": 67,
+  "refus": null
+ },
+ {
   "asin": "B0D7769Q4T",
   "titre": "Reebok Women's Phase Court Sneaker, Chalk/Very Berry/Sunbaked Clay, 10.5",
   "prix": 86.87,
@@ -4375,28 +4397,6 @@
   "normal": 384.59,
   "ecart": 261.36,
   "pct": 68,
-  "refus": null
- },
- {
-  "asin": "B0B5YSSJYB",
-  "titre": "adidas Unisex-Adult X Speedportal.4 Indoor Soccer Shoe, Solar Gold/Black/Team Solar Orange, 10.5 Women/9.5 Men",
-  "prix": 156.53,
-  "grossier": 390.28,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41Cxom0tYWL.jpg",
-  "note": 3.9,
-  "avis": 22,
-  "lien": "https://www.amazon.ca/dp/B0B5YSSJYB?tag=dtlinformat0f-20",
-  "vu": "2026-08-28 17:53",
-  "mediane90": 394.26,
-  "plancher": 320.18,
-  "ventes90": 0,
-  "stock90": 66,
-  "normal": 394.26,
-  "ecart": 237.73,
-  "pct": 60,
   "refus": null
  }
 ]

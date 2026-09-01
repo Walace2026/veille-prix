@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D8MNR48K",
+  "titre": "Cole Haan Women's Landon Sandals 40mm Heeled, Soft Gold Leather, 6",
+  "prix": 96.77,
+  "grossier": 244.62,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31rJEVE4lYL.jpg",
+  "note": 4.1,
+  "avis": 39,
+  "lien": "https://www.amazon.ca/dp/B0D8MNR48K?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 11:36",
+  "mediane90": 240.05,
+  "plancher": 111.33,
+  "ventes90": 13,
+  "stock90": 100,
+  "normal": 240.05,
+  "ecart": 143.28,
+  "pct": 60,
+  "refus": null
+ },
+ {
   "asin": "B0CZ4LHRTT",
   "titre": "Johnston & Murphy Emmalynn Bit Loafers, Grey, 10",
   "prix": 158.9,
@@ -4375,28 +4397,6 @@
   "normal": 512.75,
   "ecart": 350.59,
   "pct": 68,
-  "refus": null
- },
- {
-  "asin": "B0F63ZMNGL",
-  "titre": "ASICS Women's NOVABLAST 5 Running Shoes,9.5,Bluebell/Lilac HINT",
-  "prix": 129.95,
-  "grossier": 311.54,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31lVrIXntfL.jpg",
-  "note": 4.6,
-  "avis": 1674,
-  "lien": "https://www.amazon.ca/dp/B0F63ZMNGL?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 16:12",
-  "mediane90": 272.51,
-  "plancher": 149.9,
-  "ventes90": 64,
-  "stock90": 100,
-  "normal": 272.51,
-  "ecart": 142.56,
-  "pct": 52,
   "refus": null
  }
 ]

@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B097QK6M3W",
+  "titre": "Kingston FURY Impact 64GB (2x32GB) 3200MHz DDR4 CL20 Laptop Memory Kit of 2 KF432S20IBK2/64, Black",
+  "prix": 264.42,
+  "grossier": 2017.74,
+  "rayon": 667823011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41rAaQToa9S.jpg",
+  "note": 4.6,
+  "avis": 767,
+  "lien": "https://www.amazon.ca/dp/B097QK6M3W?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 17:19",
+  "mediane90": 1862.86,
+  "plancher": 357.75,
+  "ventes90": 11,
+  "stock90": 100,
+  "normal": 1862.86,
+  "ecart": 1598.44,
+  "pct": 86,
+  "refus": null
+ },
+ {
   "asin": "B0DLXWYC5N",
   "titre": "Nike Flex Runner 3 Little Kids' Shoes (FN1449-007, Football Grey/Hot Fuchsia/), Football Grey/Thunder Blue/Violet, 10 Little Kid",
   "prix": 57.04,
@@ -4375,28 +4397,6 @@
   "normal": 86.64,
   "ecart": 60.66,
   "pct": 70,
-  "refus": null
- },
- {
-  "asin": "B0CXJFF5RC",
-  "titre": "Clarks Collection Women's Suttyn Walk Platform, Navy Leather, 6.5 Medium US",
-  "prix": 34.15,
-  "grossier": 86.6,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31is4kvGjJL.jpg",
-  "note": 3.7,
-  "avis": 121,
-  "lien": "https://www.amazon.ca/dp/B0CXJFF5RC?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 19:12",
-  "mediane90": 86.01,
-  "plancher": 47.4,
-  "ventes90": 30,
-  "stock90": 100,
-  "normal": 86.01,
-  "ecart": 51.86,
-  "pct": 60,
   "refus": null
  }
 ]

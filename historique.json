@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B00422M2E4",
+  "titre": "Arlington TL50-25 The Loop Cable Hangers Hanger for Communications Cable Support, 25-Pack, 5-Inch Regular",
+  "prix": 128.18,
+  "grossier": 600.76,
+  "rayon": 3006902011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31v6brZTeqL.jpg",
+  "note": 4.6,
+  "avis": 49,
+  "lien": "https://www.amazon.ca/dp/B00422M2E4?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 13:19",
+  "mediane90": 579.88,
+  "plancher": 531.24,
+  "ventes90": 3,
+  "stock90": 61,
+  "normal": 579.88,
+  "ecart": 451.7,
+  "pct": 78,
+  "refus": null
+ },
+ {
   "asin": "B086694VXC",
   "titre": "Ergodyne Squids 3400 Glove Clip Holder with Dual Clips",
   "prix": 25.18,
@@ -4375,28 +4397,6 @@
   "normal": 261.3,
   "ecart": 177.4,
   "pct": 68,
-  "refus": null
- },
- {
-  "asin": "B0837L5LTP",
-  "titre": "Signature Design by Ashley - Brentlow Swivel Chair - Club Chair - Nailhead Trim - Distressed Black",
-  "prix": 247.13,
-  "grossier": 346.71,
-  "rayon": 2206275011,
-  "serie": 9,
-  "nom_serie": "Amazon Entrepôt",
-  "image": "31dT73vxLbL.jpg",
-  "note": 4.6,
-  "avis": 39,
-  "lien": "https://www.amazon.ca/dp/B0837L5LTP?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 16:12",
-  "mediane90": 1348.44,
-  "plancher": 289.28,
-  "ventes90": 0,
-  "stock90": 96,
-  "normal": 1348.44,
-  "ecart": 1101.31,
-  "pct": 82,
   "refus": null
  }
 ]

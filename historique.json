@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B00158S30K",
+  "titre": "Spanish Leather Cologne Spray - 100ml/3.38oz",
+  "prix": 131.43,
+  "grossier": 342.49,
+  "rayon": 6205124011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "51vbLvl9ceL.jpg",
+  "note": 4.2,
+  "avis": 68,
+  "lien": "https://www.amazon.ca/dp/B00158S30K?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 15:17",
+  "mediane90": 347.22,
+  "plancher": 334.39,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 347.22,
+  "ecart": 215.79,
+  "pct": 62,
+  "refus": null
+ },
+ {
   "asin": "B0BNGTMJBD",
   "titre": "Erosebridal Rustic Deer Comforter Set Queen Size, Bear Patchwork Bedding Set for Kids Teens Adult, Woodland Wildlife Moose Duvet Insert Checkered Plaid Quilt Farmhouse Christmas Decor, Blue Brown",
   "prix": 24.29,
@@ -4375,28 +4397,6 @@
   "normal": 110.0,
   "ecart": 73.12,
   "pct": 66,
-  "refus": null
- },
- {
-  "asin": "B004Z01SH0",
-  "titre": "Lincoln Electric KH907 Steel C-Clamp, 5-Inch Jaw Width, Gray (Pack of 1)",
-  "prix": 11.09,
-  "grossier": 64.75,
-  "rayon": 3006902011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41U8xHmBU+L.jpg",
-  "note": 4.1,
-  "avis": 35,
-  "lien": "https://www.amazon.ca/dp/B004Z01SH0?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 18:12",
-  "mediane90": 64.86,
-  "plancher": 18.21,
-  "ventes90": 0,
-  "stock90": 90,
-  "normal": 64.86,
-  "ecart": 53.77,
-  "pct": 83,
   "refus": null
  }
 ]

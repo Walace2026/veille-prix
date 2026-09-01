@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CK55CRKJ",
+  "titre": "Easy Spirit AP1 Sport Walking Shoe, Celestial Blue 451, 10 Narrow",
+  "prix": 79.99,
+  "grossier": 195.76,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31Bw-xC2ihL.jpg",
+  "note": 4.5,
+  "avis": 1287,
+  "lien": "https://www.amazon.ca/dp/B0CK55CRKJ?tag=dtlinformat0f-20",
+  "vu": "2026-08-31 20:31",
+  "mediane90": 186.76,
+  "plancher": 89.3,
+  "ventes90": 29,
+  "stock90": 100,
+  "normal": 186.76,
+  "ecart": 106.77,
+  "pct": 57,
+  "refus": null
+ },
+ {
   "asin": "B0CTKVJSYL",
   "titre": "DELTA Faucet Trinsic VoiceIQ Touch Kitchen Faucet with Touchless Technology, Black Kitchen Faucet, Smart Faucet, Alexa and Google Assistant Voice Activated, Black Stainless 9159TLV-KS-DST",
   "prix": 426.59,
@@ -4375,28 +4397,6 @@
   "normal": 180.62,
   "ecart": 128.63,
   "pct": 71,
-  "refus": null
- },
- {
-  "asin": "B0026ZPGAG",
-  "titre": "Converse Unisex-Adult Chuck Taylor All Star Low Top (International Version) Sneaker, 35.5 EU, Maroon-991, 15 Women/13 Men",
-  "prix": 59.92,
-  "grossier": 148.62,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31F8Q40dmjL.jpg",
-  "note": 4.6,
-  "avis": 6816,
-  "lien": "https://www.amazon.ca/dp/B0026ZPGAG?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 02:12",
-  "mediane90": 156.9,
-  "plancher": 148.39,
-  "ventes90": 32,
-  "stock90": 100,
-  "normal": 156.9,
-  "ecart": 96.98,
-  "pct": 62,
   "refus": null
  }
 ]

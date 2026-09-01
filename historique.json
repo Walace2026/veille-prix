@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0D4NQM4F7",
+  "titre": "Naturalizer Womens Havana Pointed Toe Slip On Dress Ballet Flat, Silver Bow, 8 Wide",
+  "prix": 101.23,
+  "grossier": 254.59,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31B4rSxRakL.jpg",
+  "note": 3.8,
+  "avis": 51,
+  "lien": "https://www.amazon.ca/dp/B0D4NQM4F7?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 01:19",
+  "mediane90": 228.67,
+  "plancher": 180.75,
+  "ventes90": 6,
+  "stock90": 100,
+  "normal": 228.67,
+  "ecart": 127.44,
+  "pct": 56,
+  "refus": null
+ },
+ {
   "asin": "B0GFB3XZ4K",
   "titre": "New Balance Unisex Adult 204L Trainers, cortado with stone, 5.5 US",
   "prix": 139.49,
@@ -4375,28 +4397,6 @@
   "normal": 92.82,
   "ecart": 57.64,
   "pct": 62,
-  "refus": null
- },
- {
-  "asin": "B0DZ1VVK45",
-  "titre": "VEVOR - 7000 lbs Transport Chain, 3/8' x 20' G80 Tow Chain with Grab Hooks, Manganese Galvanized Steel, DOT Certified, 2 Pack for Construction Site",
-  "prix": 119.9,
-  "grossier": 328.79,
-  "rayon": 11076213011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "51Wwxh93yAL.jpg",
-  "note": 4.8,
-  "avis": 142,
-  "lien": "https://www.amazon.ca/dp/B0DZ1VVK45?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 05:12",
-  "mediane90": 329.3,
-  "plancher": 238.97,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 329.3,
-  "ecart": 209.4,
-  "pct": 64,
   "refus": null
  }
 ]

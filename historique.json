@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B086694VXC",
+  "titre": "Ergodyne Squids 3400 Glove Clip Holder with Dual Clips",
+  "prix": 25.18,
+  "grossier": 156.08,
+  "rayon": 3006902011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41x8J6zVftL.jpg",
+  "note": 4.6,
+  "avis": 179,
+  "lien": "https://www.amazon.ca/dp/B086694VXC?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 12:40",
+  "mediane90": 156.67,
+  "plancher": 156.67,
+  "ventes90": 1,
+  "stock90": 52,
+  "normal": 156.67,
+  "ecart": 131.49,
+  "pct": 84,
+  "refus": null
+ },
+ {
   "asin": "B0D8MNR48K",
   "titre": "Cole Haan Women's Landon Sandals 40mm Heeled, Soft Gold Leather, 6",
   "prix": 96.77,
@@ -4375,28 +4397,6 @@
   "normal": 1348.44,
   "ecart": 1101.31,
   "pct": 82,
-  "refus": null
- },
- {
-  "asin": "B09NQNX9DX",
-  "titre": "Dansko Womens Cagney Heeled Bootie - comfort, arch support, pull on bootie",
-  "prix": 162.16,
-  "grossier": 506.86,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31pGg4x1BPL.jpg",
-  "note": 4.1,
-  "avis": 132,
-  "lien": "https://www.amazon.ca/dp/B09NQNX9DX?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 16:12",
-  "mediane90": 512.75,
-  "plancher": 276.54,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 512.75,
-  "ecart": 350.59,
-  "pct": 68,
   "refus": null
  }
 ]

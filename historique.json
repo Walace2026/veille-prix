@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0F7RS6SC2",
+  "titre": "adidas Kids' SL72 OG Copa Soccer Shoes, Red, 5.5",
+  "prix": 84.6,
+  "grossier": 248.29,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31po1GEitNL.jpg",
+  "note": 4.4,
+  "avis": 303,
+  "lien": "https://www.amazon.ca/dp/B0F7RS6SC2?tag=dtlinformat0f-20",
+  "vu": "2026-09-01 02:25",
+  "mediane90": 164.7,
+  "plancher": 149.07,
+  "ventes90": 16,
+  "stock90": 83,
+  "normal": 164.7,
+  "ecart": 80.1,
+  "pct": 49,
+  "refus": null
+ },
+ {
   "asin": "B0D4NQM4F7",
   "titre": "Naturalizer Womens Havana Pointed Toe Slip On Dress Ballet Flat, Silver Bow, 8 Wide",
   "prix": 101.23,
@@ -4375,28 +4397,6 @@
   "normal": 85.51,
   "ecart": 61.66,
   "pct": 72,
-  "refus": null
- },
- {
-  "asin": "B0H294MYKV",
-  "titre": "Dnzzs Womens Zip Up Hoodie Oversized Acid Wash Sweatshirts Heavyweight Fall Fashion Outfits Casual Jackets Winter Clothes, Mist Blue, X-Small",
-  "prix": 35.18,
-  "grossier": 91.92,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41AHzYzCRZL.jpg",
-  "note": 4.3,
-  "avis": 124,
-  "lien": "https://www.amazon.ca/dp/B0H294MYKV?tag=dtlinformat0f-20",
-  "vu": "2026-08-29 06:12",
-  "mediane90": 92.82,
-  "plancher": 91.95,
-  "ventes90": 7,
-  "stock90": 100,
-  "normal": 92.82,
-  "ecart": 57.64,
-  "pct": 62,
   "refus": null
  }
 ]

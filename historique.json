@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0FN7L7K85",
+  "titre": "AOBUTE Mens Christmas Button Down Shirts Ugly Xmas Long Sleeve Shirt, Christmas Light, 3X-Large",
+  "prix": 25.98,
+  "grossier": 78.76,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "51KbnNkpY9L.jpg",
+  "note": 4.6,
+  "avis": 73,
+  "lien": "https://www.amazon.ca/dp/B0FN7L7K85?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 19:17",
+  "mediane90": 89.18,
+  "plancher": 78.49,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 89.18,
+  "ecart": 63.2,
+  "pct": 71,
+  "refus": null
+ },
+ {
   "asin": "B0D4NTQY93",
   "titre": "Naturalizer Women's Astrid Pointed Toe T-Strap Pump, White Leather, 5",
   "prix": 69.99,
@@ -4375,28 +4397,6 @@
   "normal": 286.17,
   "ecart": 180.88,
   "pct": 63,
-  "refus": null
- },
- {
-  "asin": "B0G4LJM7G8",
-  "titre": "Owntop Swim Parka Surf Poncho for Kids Youth and Adult, Bat Wing Waterproof Changing Robe, Unisex Women Men Oversized Windproof Quick Dry Robe Hooded Beach Towel Jacket Coat for Swimming Navy Blue XS",
-  "prix": 77.59,
-  "grossier": 186.97,
-  "rayon": 2242989011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "41Ew9WQbKzL.jpg",
-  "note": 4.1,
-  "avis": 39,
-  "lien": "https://www.amazon.ca/dp/B0G4LJM7G8?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 08:12",
-  "mediane90": 142.76,
-  "plancher": 131.03,
-  "ventes90": 20,
-  "stock90": 100,
-  "normal": 142.76,
-  "ecart": 65.17,
-  "pct": 46,
   "refus": null
  }
 ]

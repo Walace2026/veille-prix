@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B07N3MPFFQ",
+  "titre": "Tomica Thomas Tomica 06 Near",
+  "prix": 25.0,
+  "grossier": 112.32,
+  "rayon": 6205517011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "51akeNbw4jL.jpg",
+  "note": 4.5,
+  "avis": 175,
+  "lien": "https://www.amazon.ca/dp/B07N3MPFFQ?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 14:23",
+  "mediane90": 112.56,
+  "plancher": 62.56,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 112.56,
+  "ecart": 87.56,
+  "pct": 78,
+  "refus": null
+ },
+ {
   "asin": "B0B5V6RQMZ",
   "titre": "VEVOR Projector Screen with Stand 150inch Portable Movie Screen 16:9 4K HD Wide Angle Outdoor Projector Screen Stand Easy Assembly with Storage Bag for Home Theater Office Outdoor Use",
   "prix": 75.77,
@@ -4375,28 +4397,6 @@
   "normal": 168.99,
   "ecart": 88.18,
   "pct": 52,
-  "refus": null
- },
- {
-  "asin": "B0D9BKKT12",
-  "titre": "HILADUO Custom Size Roller Shades, Blackout Motorized or Cordless Blinds",
-  "prix": 6.66,
-  "grossier": 76.31,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "5197cfVD8ZL.jpg",
-  "note": 4.4,
-  "avis": 20,
-  "lien": "https://www.amazon.ca/dp/B0D9BKKT12?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 06:12",
-  "mediane90": 76.32,
-  "plancher": 76.32,
-  "ventes90": 6,
-  "stock90": 100,
-  "normal": 76.32,
-  "ecart": 69.66,
-  "pct": 91,
   "refus": null
  }
 ]

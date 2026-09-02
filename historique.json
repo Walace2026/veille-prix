@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B00ZZ0JIUI",
+  "titre": "BCW 1-BX-802 800 Count Storage Box (2 Piece)",
+  "prix": 1.2,
+  "grossier": 52.48,
+  "rayon": 6205517011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31eCsV2eF4L.jpg",
+  "note": 4.0,
+  "avis": 15,
+  "lien": "https://www.amazon.ca/dp/B00ZZ0JIUI?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 08:26",
+  "mediane90": 62.92,
+  "plancher": 45.0,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 62.92,
+  "ecart": 61.72,
+  "pct": 98,
+  "refus": null
+ },
+ {
   "asin": "B0F7MN6NF5",
   "titre": "adidas Originals Handball Spezial - Women's (JP8753, Purple/Purple) Size 7",
   "prix": 84.6,
@@ -4375,28 +4397,6 @@
   "normal": 162.2,
   "ecart": 96.66,
   "pct": 60,
-  "refus": null
- },
- {
-  "asin": "B0D22RCFBS",
-  "titre": "adidas Womens Optime Essentials 3-Stripes Flare Training Leggings,Black/White,Medium",
-  "prix": 53.0,
-  "grossier": 134.54,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31FU+IFiPgL.jpg",
-  "note": 4.2,
-  "avis": 54,
-  "lien": "https://www.amazon.ca/dp/B0D22RCFBS?tag=dtlinformat0f-20",
-  "vu": "2026-08-30 22:12",
-  "mediane90": 122.4,
-  "plancher": 98.21,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 122.4,
-  "ecart": 69.4,
-  "pct": 57,
   "refus": null
  }
 ]

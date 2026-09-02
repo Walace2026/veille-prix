@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CP18MK2F",
+  "titre": "Dell EMC WL3024 Wireless Headphones",
+  "prix": 108.54,
+  "grossier": 291.78,
+  "rayon": 667823011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31RPUSUg9EL.jpg",
+  "note": 4.0,
+  "avis": 36,
+  "lien": "https://www.amazon.ca/dp/B0CP18MK2F?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 17:18",
+  "mediane90": 292.29,
+  "plancher": 201.64,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 292.29,
+  "ecart": 183.75,
+  "pct": 63,
+  "refus": null
+ },
+ {
   "asin": "B0DP8LVVGR",
   "titre": "Antok Full Length Mirror, 82\"x44\" Floor Mirror, Floor Standing Freestanding Full Body Mirror with Stand for Bedroom, Hanging Mounted for Living Room Cloakroom, Black",
   "prix": 943.49,
@@ -4375,28 +4397,6 @@
   "normal": 195.48,
   "ecart": 124.99,
   "pct": 64,
-  "refus": null
- },
- {
-  "asin": "B014SECRHC",
-  "titre": "SOFFE Men's Tees Tan Medium (Pack of 3)",
-  "prix": 31.92,
-  "grossier": 109.91,
-  "rayon": 21204935011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31VPAA++49L.jpg",
-  "note": 4.3,
-  "avis": 9515,
-  "lien": "https://www.amazon.ca/dp/B014SECRHC?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 07:12",
-  "mediane90": 112.19,
-  "plancher": 43.39,
-  "ventes90": 11,
-  "stock90": 100,
-  "normal": 112.19,
-  "ecart": 80.27,
-  "pct": 72,
   "refus": null
  }
 ]

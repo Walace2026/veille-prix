@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CN2V9KN4",
+  "titre": "KICZOY Women's Corduroy Loose Mid Rise Pant Casual Fall Straight Leg Elastic Waist Pants with Pockets, Caramel, Medium",
+  "prix": 40.0,
+  "grossier": 125.99,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "31BNlJybCNL.jpg",
+  "note": 3.6,
+  "avis": 112,
+  "lien": "https://www.amazon.ca/dp/B0CN2V9KN4?tag=dtlinformat0f-20",
+  "vu": "2026-09-03 07:18",
+  "mediane90": 126.0,
+  "plancher": 45.95,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 126.0,
+  "ecart": 86.0,
+  "pct": 68,
+  "refus": null
+ },
+ {
   "asin": "B0CW18WR83",
   "titre": "Samsung Silicone Cover Case for Galaxy A35 5G, Black",
   "prix": 10.99,
@@ -4375,28 +4397,6 @@
   "normal": 278.19,
   "ecart": 186.2,
   "pct": 67,
-  "refus": null
- },
- {
-  "asin": "B0CP7GCDP6",
-  "titre": "Coavoo Linear Rod Shaft 2Pcs 20mm x 500mm, Diameter 20mm Case Hardened Chrome Plated Smooth Linear Motion Rod Shaft Guide Rail - Metric h8 Tolerance L: 19.69 inch / 500mm",
-  "prix": 24.71,
-  "grossier": 78.22,
-  "rayon": 11076213011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31CTPjNdjGL.jpg",
-  "note": 4.5,
-  "avis": 2,
-  "lien": "https://www.amazon.ca/dp/B0CP7GCDP6?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 14:12",
-  "mediane90": 106.59,
-  "plancher": 64.59,
-  "ventes90": 6,
-  "stock90": 100,
-  "normal": 106.59,
-  "ecart": 81.88,
-  "pct": 77,
   "refus": null
  }
 ]

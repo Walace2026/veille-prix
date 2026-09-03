@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B072FP3GFC",
+  "titre": "Medusa Adult Costume Mask",
+  "prix": 33.02,
+  "grossier": 90.78,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "412vap-s4DL.jpg",
+  "note": 4.2,
+  "avis": 82,
+  "lien": "https://www.amazon.ca/dp/B072FP3GFC?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 23:08",
+  "mediane90": 92.49,
+  "plancher": 49.24,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 92.49,
+  "ecart": 59.47,
+  "pct": 64,
+  "refus": null
+ },
+ {
   "asin": "B0FB2XC6WM",
   "titre": "COZYFIT Underscrub Long Sleeve Women, Undershirts, Navy Blue, XL",
   "prix": 23.99,
@@ -4375,28 +4397,6 @@
   "normal": 5923.64,
   "ecart": 5835.65,
   "pct": 99,
-  "refus": null
- },
- {
-  "asin": "B08X1947ZD",
-  "titre": "Thomas Payne® Heritage Series RV Theater Seating Recliner - Left Hand Configuration, Millbrae – High-Density Foam Interior for Extra Comfort – Includes Wireless Phone Charging Station – 2020129263",
-  "prix": 360.46,
-  "grossier": 428.51,
-  "rayon": 2206275011,
-  "serie": 9,
-  "nom_serie": "Amazon Entrepôt",
-  "image": "31WOEQBEk4S.jpg",
-  "note": 4.4,
-  "avis": 86,
-  "lien": "https://www.amazon.ca/dp/B08X1947ZD?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 08:13",
-  "mediane90": 961.11,
-  "plancher": 752.73,
-  "ventes90": 1,
-  "stock90": 100,
-  "normal": 961.11,
-  "ecart": 600.65,
-  "pct": 62,
   "refus": null
  }
 ]

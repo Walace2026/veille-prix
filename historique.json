@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0CW18WR83",
+  "titre": "Samsung Silicone Cover Case for Galaxy A35 5G, Black",
+  "prix": 10.99,
+  "grossier": 64.97,
+  "rayon": 667823011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "11tGgkAbHhL.jpg",
+  "note": 4.3,
+  "avis": 49,
+  "lien": "https://www.amazon.ca/dp/B0CW18WR83?tag=dtlinformat0f-20",
+  "vu": "2026-09-03 06:21",
+  "mediane90": 65.08,
+  "plancher": 48.03,
+  "ventes90": 0,
+  "stock90": 100,
+  "normal": 65.08,
+  "ecart": 54.09,
+  "pct": 83,
+  "refus": null
+ },
+ {
   "asin": "B0G4TRY44B",
   "titre": "HZMGPCM Premium 5\" Thick Waterproof Porch Swing Cushions Sturdy Durable 3 Seat Replacement Outdoor Swing Cushions with Backrest&Ties Bench Cushion for Outdoor Furniture Backyard Patio Garden",
   "prix": 56.96,
@@ -4375,28 +4397,6 @@
   "normal": 106.59,
   "ecart": 81.88,
   "pct": 77,
-  "refus": null
- },
- {
-  "asin": "B0FP85Q7VT",
-  "titre": "Hollyland Vcore Wireless Video Transmission System, 4K30/HD Monitoring, 4 Devices Monitoring, Built-in Battery, Memory card Expansion, Supporting YouTube and Twitch, for Android HDMI Video Transmitter",
-  "prix": 109.9,
-  "grossier": 278.34,
-  "rayon": 3006902011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31Wopx87CEL.jpg",
-  "note": 3.8,
-  "avis": 31,
-  "lien": "https://www.amazon.ca/dp/B0FP85Q7VT?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 13:12",
-  "mediane90": 279.0,
-  "plancher": 230.0,
-  "ventes90": 5,
-  "stock90": 100,
-  "normal": 279.0,
-  "ecart": 169.1,
-  "pct": 61,
   "refus": null
  }
 ]

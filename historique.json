@@ -1,5 +1,27 @@
 [
  {
+  "asin": "B0FB2XC6WM",
+  "titre": "COZYFIT Underscrub Long Sleeve Women, Undershirts, Navy Blue, XL",
+  "prix": 23.99,
+  "grossier": 80.95,
+  "rayon": 21204935011,
+  "serie": 1,
+  "nom_serie": "neuf",
+  "image": "41k6SVXw6EL.jpg",
+  "note": 4.5,
+  "avis": 922,
+  "lien": "https://www.amazon.ca/dp/B0FB2XC6WM?tag=dtlinformat0f-20",
+  "vu": "2026-09-02 21:23",
+  "mediane90": 81.54,
+  "plancher": 65.72,
+  "ventes90": 8,
+  "stock90": 100,
+  "normal": 81.54,
+  "ecart": 57.55,
+  "pct": 71,
+  "refus": null
+ },
+ {
   "asin": "B005D6DO2W",
   "titre": "Murray MP25020 One 50-Amp Double Pole Two 20-Amp Single Pole Circuit Breaker",
   "prix": 149.01,
@@ -4375,28 +4397,6 @@
   "normal": 961.11,
   "ecart": 600.65,
   "pct": 62,
-  "refus": null
- },
- {
-  "asin": "B01B3EHLFI",
-  "titre": "ArtToFrames 16x31 Cobblestone/Pewter Custom Mat for Picture Frame with 12x27 Opening Size",
-  "prix": 84.88,
-  "grossier": 533.63,
-  "rayon": 2206275011,
-  "serie": 1,
-  "nom_serie": "neuf",
-  "image": "31GIvhekmfL.jpg",
-  "note": 4.4,
-  "avis": 117,
-  "lien": "https://www.amazon.ca/dp/B01B3EHLFI?tag=dtlinformat0f-20",
-  "vu": "2026-08-31 08:12",
-  "mediane90": 534.37,
-  "plancher": 534.37,
-  "ventes90": 0,
-  "stock90": 100,
-  "normal": 534.37,
-  "ecart": 449.49,
-  "pct": 84,
   "refus": null
  }
 ]
